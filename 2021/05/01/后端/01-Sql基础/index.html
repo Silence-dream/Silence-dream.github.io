@@ -1,0 +1,1218 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>SQL 基础 | 渡心的博客</title><meta name="keywords" content="sql"><meta name="author" content="渡心"><meta name="copyright" content="渡心"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="SQL 基础"><meta name="application-name" content="SQL 基础"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="SQL 基础"><meta property="og:url" content="https://silence-dream.github.io/2021/05/01/%E5%90%8E%E7%AB%AF/01-Sql%E5%9F%BA%E7%A1%80/index.html"><meta property="og:site_name" content="渡心的博客"><meta property="og:description" content="[[toc]] 了解 Sql使用的工具本文档的代码都是在 MySQL 8.0.23 版本下面运行的MySQL 下载地址 znavicat 数据库可视化工具 数据库数据库这个术语的用法很多，（从 SQL 的角度来看），数据库是一个以某种有组织的方式存储的数据集合。最简单的办法是将数据库想象为一个文件柜"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/ganyuxiaozhongli.jpg?_r_=91fb2cf7-8731-5aa7-a679-66d43b6b11a2"><meta property="article:author" content="渡心"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/ganyuxiaozhongli.jpg?_r_=91fb2cf7-8731-5aa7-a679-66d43b6b11a2"><meta name="description" content="[[toc]] 了解 Sql使用的工具本文档的代码都是在 MySQL 8.0.23 版本下面运行的MySQL 下载地址 znavicat 数据库可视化工具 数据库数据库这个术语的用法很多，（从 SQL 的角度来看），数据库是一个以某种有组织的方式存储的数据集合。最简单的办法是将数据库想象为一个文件柜"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://silence-dream.github.io/2021/05/01/%E5%90%8E%E7%AB%AF/01-Sql%E5%9F%BA%E7%A1%80/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png"},
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 渡心","link":"链接: ","source":"来源: 渡心的博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '渡心的博客',
+  title: 'SQL 基础',
+  postAI: '',
+  pageFillDescription: '了解 Sql, 使用的工具, 数据库, 表, 列和数据类型, 行, 主键(primary key), 什么是 SQL, 检索数据(SELECT), SELECT 语句, 检索单列, 检索多列, 检索所有列, 检索不重复的值, 限制结果, 注释, 排序检索数据(ORDER BY ), 按多个列排序, 按列位置排序, 指定排序方向 （升序、降序）, 过滤数据(WHERE), 使用 WHERE 子句, WHERE 子句操作符, 算术运算符, 比较运算符, 逻辑运算符, 范围值检查, 空值检查, 高级数据过滤, 组合 WHERE 子句, AND 操作符, OR 操作符, IN 操作符, NOT 操作符, 用通配符进行过滤, LIKE 操作符进行模糊查询, 百分号（%）通配符, 下划线（_）通配符, 使用通配符的技巧, 计算字段, 拼接字段, 使用别名, 执行算术计算, 使用函数处理数据, 函数, 使用函数, MySQL 常用函数, 汇总数据, 聚集函数, 分组数据 GROUP, 数据分组, 创建分组, 过滤分组, 分组和排序, SELECT 子句顺序, 使用子查询, 利用子查询进行过滤, 联结表, 联结, 关系表, 为什么使用联结, 创建联结, WHERE 子句的重要性, 内联结 INNER JOIN, 联结多个表, 创建高级联结, 使用表别名, 使用不同类型的联结, 自联结, 自然联结, 外联结 OUTER JOIN, 组合查询 UNION, 组合查询, 创建组合查询, UNION 规则, 包含或取消重复的行, 插入数据 INSERT, 数据插入, 插入完整的行, 参考资料, 练习数据, 单词了解使用的工具本文档的代码都是在版本下面运行的下载地址数据库可视化工具数据库数据库这个术语的用法很多从的角度来看数据库是一个以某种有组织的方式存储的数据集合最简单的办法是将数据库想象为一个文件柜这个文件柜是一个存放数据的物理位置不管数据是什么也不管数据是如何组织的如果你使用查看数据库那么你可以在下面查看到数据库注意数据库概念混淆人们通常用数据库这个术语来代表他们使用的数据库软件这是不正确的也因此产生了许多混淆确切地说数据库软件应称为数据库管理系统数据库是通过创建和操纵的容器而具体它究竟是什么形式如何各种数据库都不一样表拥有了数据库我们就可以把数据存储在表中表是一个存储数据的容器它可以是一个文件也可以是一个数据库中的一个表表是一种结构化的文件可用来存储某种特定类型的数据数据库中的每个表都有一个名字来标识自己这个名字是唯一的即数据库中没有其他表具有相同的名字表具有一些特性这些特性定义了数据在表中如何存储包含存储什么样的数据数据如何分解各部分信息如何命名等信息描述表的这组信息就是所谓的模式模式可以用来描述数据库中特定的表也可以用来描述整个数据库和其中表的关系关于数据库和表的布局及特性的信息在中表的表现形式如图列和数据类型表由列组成列存储表中某部分的信息列是表中的一个数据单元它可以是一个字段也可以是一个索引列表中的一个字段所有表都是由一个或多个列组成的在中列的表现形式如图数据库中每个列都有相应的数据类型数据类型定义了列可以存储哪些数据种类每个表列都有相应的数据类型它限制或允许该列中存储的数据数据类型限定了可存储在列中的数据种类例如防止在数值字段中录入字符值数据类型还帮助正确地分类数据并在优化磁盘使用方面起重要的作用因此在创建表时必须特别关注所用的数据类型行表中的数据是按行存储的所保存的每个记录存储在自己的行内在中行的表现形式如图上图中的每一行都是表中的一个记录或者称为数据库记录说明是记录还是行你可能听到用户在提到行时称其为数据库记录这两个术语多半是可以交替使用的但从技术上说行才是正确的术语主键表中每一行都应该有一列或几列可以唯一标识自己用户表可以用用户编号订单表可以用订单号来标识主键唯一标识表中每行的这个列或这几列称为主键主键用来表示一个特定的行没有主键更新或删除表中特定行就极为困难因为你不能保证操作只涉及相关的行应该总是定义主键虽然并不总是需要主键但多数数据库设计者都会保证他们创建的每个表具有一个主键以便于以后的数据操作和管理表中的任何列都可以作为主键只要它满足以下条件任意两行都不具有相同的主键值每一行都必须具有一个主键值主键列不允许值主键列中的值不允许修改或更新主键值不能重用如果某行从表中删除它的主键不能赋给以后的新行在中主键的表现形式如图右键表打开设计表什么是发音为字母或是结构化查询语言的缩写是一种专门用来与数据库沟通的语言与其他语言如英语或这样的编程语言不一样中只有很少的词这是有意而为的设计的目的是很好地完成一项任务提供一种从数据库中读写数据的简单有效的方法有如下的优点不是某个特定数据库供应商专有的语言几乎所有重要的都支持所以学习此语言使你几乎能与所有数据库打交道简单易学它的语句全都是由有很强描述性的英语单词组成而且这些单词的数目不多虽然看上去很简单但实际上是一种强有力的语言灵活使用其语言元素可以进行非常复杂和高级的数据库操作扩展知识许多厂商通过增加语句或指令对进行了扩展这种扩展的目的是提供执行特定操作的额外功能或简化方法虽然这种扩展很有用但一般都是针对个别的很少有两个以上的供应商支持这种扩展标准由标准委员会管理从而称为所有主要的即使有自己的扩展也都支持各个实现有自己的名称如等本教程主要是在使用某种特定的时会特别说明检索数据这一章节介绍如何使用语句从表中检索一个或多个数据列开始练习之前记得下载练习数据语句意思为选择为了使用检索表数据必须至少给出两条信息想选择什么以及从什么地方选择检索单列检索表里面的字段上述代码利用语句从表中检索一个名为的列所需的列名写在关键字之后关键字指出从哪个表中检索数据语法总结列名表名输出结果未排序数据怎么我执行的结果和图中不一样如果你自己试验这个查询可能会发现显示输出的数据顺序与这里的不同出现这种情况很正常如果没有明确排序查询结果下一课介绍则返回的数据没有特定的顺序返回数据的顺序可能是数据被添加到表中的顺序也可能不是只要返回相同数目的行就是正常的如上的一条简单语句将返回表中的所有行数据没有过滤过滤将得出结果集的一个子集也没有排序以后的章节将会详细讨论语句的分号多条语句必须以分号分隔有些不需要在单挑语句后面加分号但是也有需要要分号的总之加上分号一定没有坏处语句不区分大小写语句不区分大小写因此与是相同的同样写成也没有关系许多开发人员喜欢对关键字使用大写而对列名和表名使用小写使用空格在处理语句时其中所有空格都被忽略语句可以写成长长的一行也可以分写在多行以上都是可以正常运行的注意以分号结尾来表达一段代码的结束检索多列要想从一个表中检索多个列仍然使用相同的语句从检索单列一样只不过是要把检索的列名用逗号分隔罢了小心逗号引发的错误当选择多个列时一定要在列名之间加上逗号但最后一个列名后不加如果在最后一个列名后加了逗号将出现错误下面的语句从表中检索列检索表里面的字段输出结果检索所有列和之前的检索单列多列一样检索所有列只是把列名换成了通配符检索表里面的所有字段输出结果注意通配符一般而言除非你确实需要表中的每一列否则最好别使用通配符虽然使用通配符能让你自己省事不用明确列出所需列但检索不需要的列通常会降低检索和应用程序的性能检索不重复的值之前的练习案例你会发现重复出现了很多相同的值如何让这些重复的值不出现呢办法就是使用关键字意为不同的清楚的确切的顾名思义它会返回数据库中不同的值检索重复的值输出结果与检索单列对比是不是少了重复的值不能部分使用关键字作用于所有的列不仅仅是跟在其后的那一列例如你指定除非指定的两列完全相同否则所有的行都会被检索出来限制结果语句返回指定表中所有匹配的行很可能是每一行如果你只想返回第一行或者一定数量的行该怎么办呢我们可以使用但是注意的是在各种数据库中这一的实现并不相同由于本教程使用的是所以只显示的用法选择前面条数据选择第行往后的行数据用数学语言表示注释在很多编辑器里面你都可以使用快捷键来注释所以本章只是简单是说明有哪些注释可以用的注释注释多行注释排序检索数据语句返回某个数据库表的单个列是没有特定顺序的其实检索出的数据并不是随机显示的如果不排序数据一般将以它在底层表中出现的顺序显示这有可能是数据最初添加到表中的顺序但是如果数据随后进行过更新或删除那么这个顺序将会受到重用回收存储空间的方式的影响因此如果不明确控制的话则最终的结果不能也不应该依赖该排序顺序关系数据库设计理论认为如果不明确规定排序顺序则不应该假定检索出的数据的顺序有任何意义子句语句由子句构成有些子句是必需的有些则是可选的一个子句通常由一个关键字加上所提供的数据组成子句的例子有我们在前一课看到的语句的子句为了明确地排序用语句检索出的数据可使用子句意思为命令顺序子句取一个或多个列的名字据此对输出进行排序注意子句的位置在指定一条子句时应该保证它是语句中最后一条子句如果它不是最后的子句将会出现错误消息按多个列排序我们有时候的排序是不止一个裂的数据排序例如地铁路线我们希望先按地铁城市名排序然后再按照地铁线路最后按照地铁站排序按列位置排序除了能用列名指出排序顺序外还支持按相对列位置进行排序可以看到这里的输出与上面的查询相同不同之处在于子句后面选择了列代表了先按排序然后按排序最后按排序这一技术的主要好处在于不用重新输入列名但它也有缺点首先不明确给出列名有可能造成错用列名排序其次在对清单进行更改时容易错误地对数据进行排序忘记对子句做相应的改动最后如果进行排序的列不在清单中显然不能使用这项技术指定排序方向升序降序数据排序不限于升序排序从到这只是默认的排序顺序还可以使用子句进行降序从到排序为了进行降序排序必须指定关键字降序排列关键字只应用到直接位于其前面的列名在多个列上降序排序如果想在多个列上进行降序排序必须对每一列指定关键字是的缩写这两个关键字都可以使用与相对的是或在升序排序时可以指定它但是你指定也没啥用因为升序的默认的在对文本性数据进行排序时与相同吗位于之前还是之后这些问题不是理论问题其答案取决于数据库的设置方式在字典排序顺序中被视为与相同这是大多数数据库管理系统的默认行为但是许多允许数据库管理员在需要时改变这种行为如果你的数据库包含大量外语字符可能必须这样做这里的关键问题是如果确实需要改变这种排序顺序用简单的子句可能做不到你必须请求数据库管理员的帮助过滤数据使用子句数据库表一般包含大量的数据很少需要检索表中的所有行通常只会根据特定操作或报告的需要提取表数据的子集只检索所需数据需要指定搜索条件搜索条件也称为过滤条件人话就是寻找符合条件的数据在语句中数据根据子句中指定的搜索条件进行过滤子句在表名子句之后给出如下所示输语句使用通配符检索所有的列但是只会返回的行注意子句的位置在同时使用和子句时应该让位于之后否则将会产生错误关于的使用排序检索数据子句操作符我们可以通过子句操作符来获得我们想要的数据表名列名运算符想要的结果让我们来几个案例来看看找出小于的数据找出不是郑州的数据郑州等价郑州何时使用引号如果将值与字符串类型的列进行比较就需要限定引号用来与数值列进行比较的值不用引号是还是和通常可以互换但是并非所有都支持这两种不等于操作符例如支持而不支持如果有疑问请参阅相应的文档算术运算符操作符描述示例相加将符号两边的数值加起来得相减从最边的操作数中减去右边的操作数得相乘将两边的操作数相乘得相除用右边的操作数除以左边的操作数得取余用右边的操作数除以左边的操作数并返回余数得比较运算符操作符描述示例检查两个操作数的值是否相等是的话返回不为和检查两个操作数的值是否相等如果不等则返回为检查左边的操作数是否大于右边的操作数是的话返回真不为检查左边的操作数是否大于或等于右边的操作数是的话返回真不为检查左边的操作数是否不小于右边的操作数是的话返回真检查左边的操作数是否不大于右边的操作数是的话返回真为逻辑运算符运算符描述运算符用于将一个值同另一个值集中所有的值进行比较运算符使得在子句中可以同时存在多个条件运算符用于将一个值同条件所指定的列表中的任意值相比较给定最小值和最大值运算符可以用于搜索区间内的值运算符用于在表中搜索符合特定条件的行运算符用于将某个值同指定的一列字面值相比较运算符用于使用通配符对某个值和与其相似的值做出比较操作符反转它所作用的操作符的意义例如等这是一个求反运算符运算符用于在语句中连接多个条件用于将某个值同作比较运算符检查指定表的所有行以确定没有重复范围值检查要检查某个范围的值可以使用操作符其语法与其他子句的操作符稍有不同因为它需要两个值即范围的开始值和结束值让我们来检索是到之间的数据吧数学语言表述为范围值检查在使用时必须指定两个值所需范围的低端值和高端值这两个值必须用关键字分隔匹配范围中所有的值包括指定的开始值和结束值空值检查在创建表时表设计人员可以指定其中的列能否不包含值在一个列不包含值时称其包含空值无值它与字段包含空字符串或仅仅包含空格不同确定值是否为不能简单地检查是否语句有一个特殊的子句可用来检查具有值的列这个子句就是子句其语法如下空值检查这条语句返回所有数据空的字段因为表中没有空的行所以没有返回数据高级数据过滤这一课讲授如何组合子句以建立功能更强更高级的搜索条件我们还将学习如何使用和操作符组合子句为了进行更强的过滤控制允许给出多个子句操作符找出小于且大于的数据用在子句中的关键字用来指示检索满足所有给定条件的行这个例子只包含一个子句因此最多有两个过滤条件可以增加多个过滤条件每个条件间都要使用关键字操作符操作符与操作符正好相反它指示检索匹配任一条件的行事实上许多在子句的第一个条件得到满足的情况下就不再计算第二个条件了在第一个条件满足时不管第二个条件是否满足相应的行都将被检索出来这一段语句返回了或的数据子句中使用的关键字用来表示检索匹配任一给定条件的行操作符操作符用来指定条件范围范围中的每个条件都可以进行匹配取一组由逗号分隔括在圆括号中的合法值此语句检索列里面符合操作符后面由逗号分隔的合法值这些值必须括在圆括号中为什么要使用操作符其优点如下在有很多合法选项时操作符的语法更清楚更直观在与其他和操作符组合使用时求值顺序更容易管理操作符一般比一组操作符执行得更快在上面这个合法选项很少的例子中你看不出性能差异的最大优点是可以包含其他语句能够更动态地建立子句操作符子句中的操作符有且只有一个功能那就是否定其后所跟的任何条件子句中用来否定其后条件的关键字郑州上海返回不是郑州和上海的数据并进行了排序用通配符进行过滤这一章介绍什么是通配符如何使用通配符以及怎样使用操作符进行通配搜索以便对数据进行复杂过滤操作符进行模糊查询前面介绍的所有操作符都是针对已知值进行过滤的在我们的日常使用中肯定还有未知的比如寻找姓李的同学有几个之类的例如下面的例子查找姓王的学生王上面的代码使用了通配符通配符本身实际上是的子句中有特殊含义的字符支持几种通配符为在搜索子句中使用通配符必须使用操作符指示后跟的搜索模式利用通配符匹配而不是简单的相等匹配进行比较通配符用来匹配值的一部分的特殊字符搜索模式由字面值通配符或两者组合构成的搜索条件谓词操作符何时不是操作符答案是它作为谓词时从技术上说是谓词而不是操作符虽然最终的结果是相同的但应该对此术语有所了解以免在文献或手册中遇到此术语时不知所云通配符搜索只能用于文本字段字符串非文本数据类型字段不能使用通配符搜索百分号通配符最常使用的通配符是百分号在搜索串中表示任何字符出现任意次数王以上代码查找了以王开头的字段通配符如果使用的是需要使用而不是说明区分大小写根据的不同及其配置搜索可以是区分大小写的如果区分大小写则与是不一样的通配符可在搜索模式中的任意位置使用并且可以使用多个通配符搜索模式表示匹配任何位置上包含文本的值不论它之前或者之后出现什么字符请注意通配符看起来像是可以匹配任何东西但有个例外这就是子句不会匹配产品名称为的行下划线通配符另一个有用的通配符是下划线下划线的用途与一样但它只匹配单个字符而不是多个字符说明通配符如果使用的是需要使用而不是下划线通配符注意使用了两个下划线用来匹配所以是匹配前面任意两个字符后面以结尾的数据可以与通配符对比一下与能匹配个字符不同总是刚好匹配一个字符不能多也不能少使用通配符的技巧正如所见的通配符很有用但这种功能是有代价的即通配符搜索一般比前面讨论的其他搜索要耗费更长的处理时间这里给出一些使用通配符时要记住的技巧不要过度使用通配符如果其他操作符能达到相同的目的应该使用其他操作符在确实需要使用通配符时也尽量不要把它们用在搜索模式的开始处把通配符置于开始处搜索起来是最慢的仔细注意通配符的位置如果放错地方可能不会返回想要的数据计算字段存储在数据库表中的数据一般不是应用程序所需要的格式下面举几个例子需要显示公司名同时还需要显示公司的地址但这两个信息存储在不同的表列中城市州和邮政编码存储在不同的列中应该这样但邮件标签打印程序需要把它们作为一个有恰当格式的字段检索出来列数据是大小写混合的但报表程序需要把所有数据按大写表示出来物品订单表存储物品的价格和数量不存储每个物品的总价格用价格乘以数量即可但为打印发票需要物品的总价格需要根据表数据进行诸如总数平均数的计算在上述每个例子中存储在表中的数据都不是应用程序所需要的我们需要直接从数据库中检索出转换计算或格式化过的数据而不是检索出数据然后再在客户端应用程序中重新格式化这就是计算字段可以派上用场的地方了与前几课介绍的列不同计算字段并不实际存在于数据库表中计算字段是运行时在语句内创建的字段基本上与列的意思相同经常互换使用不过数据库列一般称为列而术语字段通常与计算字段一起使用需要特别注意只有数据库知道语句中哪些列是实际的表列哪些列是计算字段从客户端如应用程序来看计算字段的数据与其他列的数据的返回方式相同提示客户端与服务器的格式在语句内可完成的许多转换和格式化工作都可以直接在客户端应用程序内完成但一般来说在数据库服务器上完成这些操作比在客户端中完成要快得多拼接字段我们直接来看案例拼接字段如果我们想去掉数据中的前后空格可以使用函数同时还有去掉左空格和去掉右空格使用别名从前面的输出可以看到语句可以很好地拼接地址字段但是这个新计算列的名字是什么呢实际上它没有名字它只是一个值如果仅在查询工具中查看一下结果这样没有什么不好但是一个未命名的列不能用于客户端应用中因为客户端没有办法引用它为了解决这个问题支持列别名别名是一个字段或值的替换名别名用关键字赋予请看下面的语句拼接字段执行算术计算计算字段的另一常见用途是对检索出的数据进行算术计算查看案例执行算术计算使用函数处理数据这一章介绍什么是函数支持何种函数以及如何使用这些函数还将讲解为什么函数的使用可能会带来问题函数与大多数其他计算机语言一样也可以用函数来处理数据函数一般是在数据上执行的为数据的转换和处理提供了方便之前我们见过的就是一个函数使用函数大多数实现支持以下类型的函数用于处理文本字符串如删除或填充值转换值为大写或小写的文本函数用于在数值数据上进行算术操作如返回绝对值进行代数运算的数值函数用于处理日期和时间值并从这些值中提取特定成分如返回两个日期之差检查日期有效性的日期和时间函数返回正使用的特殊信息如返回用户登录信息的系统函数页正在施工中常用函数汇总数据聚集函数我们经常需要汇总数据而不用把它们实际检索出来为此提供了专门的函数使用这些函数查询可用于检索数据以便分析和报表生成这种类型的检索例子有确定表中行数或者满足某个条件或包含某个特定值的行数获得表中某些行的和找出表列或所有行或某些特定的行的最大值最小值平均值聚集函数对某些行运行的函数计算并返回一个值函数说明返回某列的平均值返回某列的行数返回某列的最大值返回某列的最小值返回某列值之和列值为函数忽略列值为的行如果指定列名则函数会忽略指定列的值为空的行但如果函数中用的是星号则不忽略函数忽略列值为的行函数忽略列值为的行函数忽略列值为的行分组数据这一课介绍如何分组数据以便汇总表内容的子集这涉及两个新语句子句子句和子句数据分组使用聚集函数可以汇总数据这样我们就能够对行进行计数计算和与平均数不检索所有数据就获得大值和小值目前为止的所有计算都是在表的所有数据或匹配特定的子句的数据上进行的例如下面的例子郑州如果我们要返回每个地铁名称出现的次数怎么办总可能一个一个的去判断吧这时候就需要使用到分组了使用分组可以将数据分为多个逻辑组对每个组进行聚集计算创建分组因为使用了就不必指定要计算和估值的每个组了系统会自动完成子句指示分组数据然后对每个组而不是整个结果集进行聚集在使用子句前需要知道一些重要的规定子句可以包含任意数目的列因而可以对分组进行嵌套更细致地进行数据分组如果在子句中嵌套了分组数据将在后指定的分组上进行汇总换句话说在建立分组时指定的所有列都一起计算所以不能从个别的列取回数据子句中列出的每一列都必须是检索列或有效的表达式但不能是聚集函数如果在中使用表达式则必须在子句中指定相同的表达式不能使用别名大多数实现不允许列带有长度可变的数据类型如文本或备注型字段除聚集计算语句外语句中的每一列都必须在子句中给出如果分组列中包含具有值的行则将作为一个分组返回如果列中有多行值它们将分为一组子句必须出现在子句之后子句之前过滤分组除了能用分组数据外还允许过滤分组规定包括哪些分组排除哪些分组例如上一节的例子中我们不想看见郑州的统计次数就可以这样写过滤分组郑州还记得上一节使用子句前的规定吗子句子句之后子句之前而且因为过滤指定的是行而不是分组事实上没有分组的概念那么不使用使用什么呢为此提供了另一个子句就是子句非常类似于事实上目前为止所学过的所有类型的子句都可以用来替代唯一的差别是过滤行而过滤分组说明和的差别这里有另一种理解方法在数据分组前进行过滤在数据分组后进行过滤这是一个重要的区别排除的行不包括在分组中这可能会改变计算值从而影响子句中基于这些值过滤掉的分组说明使用和与非常类似如果不指定则大多数会同等对待它们不过你自己要能区分这一点使用时应该结合子句而子句用于标准的行级过滤分组和排序和经常完成相同的工作但它们非常不同理解这一点很重要以下汇总了它们之间的差别对产生的输出排序对行分组但输出可能不是分组的顺序任意列都可以使用甚至非选择的列也可以使用只可能使用选择列或表达式列而且必须使用每个选择列表达式不一定需要如果与聚集函数一起使用列或表达式则必须使用第一项差别极为重要我们经常发现用分组的数据确实是以分组顺序输出的但并不总是这样这不是规范所要求的此外即使特定的总是按给出的子句排序数据用户也可能会要求以不同的顺序排序就因为你以某种方式分组数据获得特定的分组聚集值并不表示你需要以相同的方式排序输出应该提供明确的子句即使其效果等同于子句不要忘记一般在使用子句时应该也给出子句这是保证数据正确排序的唯一方法千万不要仅依赖排序数据为说明和的使用方法来看一个例子排序和分组郑州子句顺序在语句中使用时必须遵循的次序以下列出迄今为止所学过的子句子句说明是否必须使用要返回的列或表达式是从中检索数据的表仅在从表选择数据时使用行级过滤否分组说明仅在按组计算聚集时使用组级过滤否输出排序顺序否使用子查询语句是的查询我们迄今为止所看到的所有语句都是简单查询即从单个数据库表中检索数据的单条语句查询任何语句都是查询但此术语一般指语句还允许创建子查询即嵌套在其他查询中的查询为什么要这样做呢理解这个概念的最好方法是考察几个例子利用子查询进行过滤比如表中有没有记录学生的但是表中记录了同时表中的和表中的有所对应我们可以使用子查询来找到学生的子查询分析这一条语句可以看成先执行返回了然后把值替换进了的里面联结表这一章会介绍什么是联结为什么使用联结如何编写使用联结的语句联结最强大的功能之一就是能在数据查询的执行中联结表联结是利用的能执行的最重要的操作很好地理解联结及其语法是学习的极为重要的部分在能够有效地使用联结前必须了解关系表以及关系数据库设计的一些基础知识下面的介绍并不能涵盖这一主题的所有内容但作为入门已经够了关系表理解关系表最好是来看个例子有一个包含产品目录的数据库表其中每类物品占一行对于每一种物品要存储的信息包括产品描述价格以及生产该产品的供应商现在有同一供应商生产的多种物品那么在何处存储供应商名地址联系方法等供应商信息呢将这些数据与产品信息分开存储的理由是同一供应商生产的每个产品其供应商信息都是相同的对每个产品重复此信息既浪费时间又浪费存储空间如果供应商信息发生变化例如供应商迁址或电话号码变动只需修改一次即可如果有重复数据即每种产品都存储供应商信息则很难保证每次输入该数据的方式都相同不一致的数据在报表中就很难利用关键是相同的数据出现多次决不是一件好事这是关系数据库设计的基础关系表的设计就是要把信息分解成多个表一类数据一个表各表通过某些共同的值互相关联所以才叫关系数据库在这个例子中可建立两个表一个存储供应商信息另一个存储产品信息表包含所有供应商信息每个供应商占一行具有唯一的标识此标识称为主键可以是供应商或任何其他唯一值表只存储产品信息除了存储供应商表的主键外它不存储其他有关供应商的信息表的主键将表与表关联利用供应商能从表中找出相应供应商的详细信息这样做的好处是供应商信息不重复不会浪费时间和空间如果供应商信息变动可以只更新表中的单个记录相关表中的数据不用改动由于数据不重复数据显然是一致的使得处理数据和生成报表更简单总之关系数据可以有效地存储方便地处理因此关系数据库的可伸缩性远比非关系数据库要好可伸缩能够适应不断增加的工作量而不失败设计良好的数据库或应用程序称为可伸缩性好为什么使用联结如前所述将数据分解为多个表能更有效地存储更方便地处理并且可伸缩性更好但这些好处是有代价的如果数据存储在多个表中怎样用一条语句就检索出数据呢答案是使用联结简单说联结是一种机制用来在一条语句中关联表因此称为联结使用特殊的语法可以联结多个表返回一组输出联结在运行时关联表中正确的行创建联结创建联结非常简单指定要联结的所有表以及关联它们的方式即可请看下面的例子创建联结我们来看这段代码语句与前面所有语句一样指定要检索的列这里最大的差别是所指定的两列和在一个表中而第三列在另一个表中现在来看子句与以前的语句不一样这条语句的子句列出了两个表和它们就是这条语句联结的两个表的名字这两个表用子句正确地联结子句指示将表中的与表中的匹配起来我们注意到要匹配的两列指定为和这里需要这种完全限定列名如果只给出就不知道指的是哪一个了警告完全限定列名就像前一课提到的在引用的列可能出现歧义时必须使用完全限定列名用一个句点分隔表名和列名如果引用一个没有用表名限制的具有歧义的列名大多数会返回错误子句的重要性使用子句建立联结关系似乎有点奇怪但实际上是有个很充分的理由的要记住在一条语句中联结几个表时相应的关系是在运行中构造的在数据库表的定义中没有指示如何对表进行联结的内容你必须自己做这件事情在联结两个表时实际要做的是将第一个表中的每一行与第二个表中的每一行配对子句作为过滤条件只包含那些匹配给定条件这里是联结条件的行没有子句第一个表中的每一行将与第二个表中的每一行配对而不管它们逻辑上是否能配在一起子句的重要性注意不要忘了子句要保证所有联结都有子句否则将返回比想要的数据多得多的数据同理要保证子句的正确性不正确的过滤条件会导致返回不正确的数据内联结目前为止使用的联结称为等值联结它基于两个表之间的相等测试这种联结也称为内联结其实可以对这种联结使用稍微不同的语法明确指定联结的类型下面的语句返回与前面例子完全相同的数据内连接此语句中的与前面的语句相同但子句不同这里两个表之间的关系是以指定的部分子句在使用这种语法时联结条件用特定的子句而不是子句给出传递给的实际条件与传递给的相同联结多个表不限制一条语句中可以联结的表的数目创建联结的基本规则也相同首先列出所有表然后定义表之间的关系创建高级联结本章讲解另外一些联结包括它们的含义和使用方法介绍如何使用表别名如何对被联结的表使用聚集函数使用表别名之前介绍了如何使用别名引用被检索的表列例如除了可以对列名和计算字段使用别名还允许给表名起别名这样做有两个主要理由缩短语句允许在一条语句中多次使用相同的表请看下面的语句它与前一课例子中所用的语句基本相同但改成了使用别名可以看到子句中的三个表全都有别名使用作为的别名如此等等这样就可以使用省略的而不用全名在这个例子中表别名只用于子句其实它不仅能用于子句还可以用于的列表子句以及其他语句部分使用不同类型的联结迄今为止我们使用的只是内联结或等值联结的简单联结现在来看三种其他联结自联结自然联结和外联结自联结如前所述使用表别名的一个主要原因是能在一条语句中不止一次引用相同的表下面举两个例子自联结男提示用自联结而不用子查询自联结通常作为外部语句用来替代从相同表中检索数据的使用子查询语句虽然终的结果是相同的但许多处理联结远比处理子查询快得多应该试一下两种方法以确定哪一种的性能更好自然联结无论何时对表进行联结应该至少有一列不止出现在一个表中被联结的列标准的联结前一课中介绍的内联结返回所有数据相同的列甚至多次出现自然联结排除多次出现使每一列只返回一次怎样完成这项工作呢答案是系统不完成这项工作由你自己完成它自然联结要求你只能选择那些唯一的列一般通过对一个表使用通配符而对其他表的列使用明确的子集来完成事实上我们迄今为止建立的每个内联结都是自然联结很可能永远都不会用到不是自然联结的内联结外联结许多联结将一个表中的行与另一个表中的行相关联但有时候需要包含没有关联行的那些行内联结外联结这条语句使用了关键字来指定联结类型但是与内联结关联两个表中的行不同的是外联结还包括没有关联行的行在使用语法时必须使用或关键字指定包括其所有行的表指出的是右边的表而指出的是左边的表上面的例子使用从子句左边的表表中选择所有行为了从右边的表中选择所有行需要使用外联结右组合查询如何利用操作符将多条语句组合成一个结果集组合查询多数查询只包含从一个或多个表中返回数据的单条语句但是也允许执行多个查询多条语句并将结果作为一个查询结果集返回这些组合查询通常称为并或复合查询主要有两种情况需要使用组合查询在一个查询中从不同的表返回结构数据对一个表执行多个查询按一个查询返回数据创建组合查询可用操作符来组合数条查询利用可给出多条语句将它们的结果组合成一个结果集比如输出匡明的总分创建组合查询总分匡明输出王芳的总分总分王芳接下来组合这两条语句总分匡明总分王芳注意子句需要在最后的位置所以去掉了第一段代码的子句使用可能比使用子句更为复杂但对于较复杂的过滤条件或者从多个表而不是一个表中检索数据的情形使用可能会使处理更简单规则必须由两条或两条以上的语句组成语句之间用关键字分隔因此如果组合四条语句将要使用三个关键字中的每个查询必须包含相同的列表达式或聚集函数不过各个列不需要以相同的次序列出列数据类型必须兼容类型不必完全相同但必须是可以隐含转换的类型例如不同的数值类型或不同的日期类型包含或取消重复的行默认会去掉重复的行如果想显示重复的行可以使用插入数据介绍如何利用的语句将数据插入表中数据插入用来将行插入或添加到数据库表插入有几种方式插入完整的行插入行的一部分插入某些查询的结果插入完整的行插入完整行张三男这段代码将一个新学生插入到表中存储到表中每一列的数据在子句中给出必须给每一列提供一个值如果某列没有值则应该使用上面的语句高度依赖于表中列的定义次序还依赖于其容易获得的次序信息即使可以得到这种次序信息也不能保证各列在下一次表结构变动后保持完全相同的次序因此编写依赖于特定列次序的语句是很不安全的这样做迟早会出问题更安全清晰的方法如下张三男这个例子与前一个语句的工作完全相同但在表名后的括号里明确给出了列名在插入行时将用列表中的相应值填入列表中的对应项参考资料必知必会第四版基础教程第二版官方文档教程廖雪峰的官方网站练习数据练习数据下载单词选择挑选单词意义从起选择哪个表不同的限制偏离顺序在中间有拥有和配合使用组子查询内部的',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-28 00:57:05',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://avatars.githubusercontent.com/u/42824008?v=4"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.yichengloong.cn/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.yichengloong.cn/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">渡心的博客</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Cypress/" style="font-size: 1.05rem;">Cypress<sup>1</sup></a><a href="/tags/JavaScript/" style="font-size: 1.05rem;">JavaScript<sup>6</sup></a><a href="/tags/Nuxt/" style="font-size: 1.05rem;">Nuxt<sup>1</sup></a><a href="/tags/React/" style="font-size: 1.05rem;">React<sup>5</sup></a><a href="/tags/TypeScript/" style="font-size: 1.05rem;">TypeScript<sup>1</sup></a><a href="/tags/Vue/" style="font-size: 1.05rem;">Vue<sup>6</sup></a><a href="/tags/npm/" style="font-size: 1.05rem;">npm<sup>1</sup></a><a href="/tags/shell/" style="font-size: 1.05rem;">shell<sup>1</sup></a><a href="/tags/sql/" style="font-size: 1.05rem;">sql<sup>2</sup></a><a href="/tags/%E5%8E%9F%E7%A5%9E/" style="font-size: 1.05rem;">原神<sup>1</sup></a><a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" style="font-size: 1.05rem;">开发工具<sup>2</sup></a><a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 1.05rem;">测试<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">二月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/09/"><span class="card-archive-list-date">九月 2021</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/06/"><span class="card-archive-list-date">六月 2021</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/05/"><span class="card-archive-list-date">五月 2021</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">8</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/03/"><span class="card-archive-list-date">三月 2021</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="article-meta tags"><a class="article-meta__tags" href="/tags/sql/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>sql</span></a></span></div></div><h1 class="post-title" itemprop="name headline">SQL 基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2021-05-01T00:00:00.000Z" title="发表于 2021-05-01 00:00:00">2021-05-01</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-03-28T00:57:05.461Z" title="更新于 2024-03-28 00:57:05">2024-03-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为长沙"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>长沙</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/ganyuxiaozhongli.jpg?_r_=91fb2cf7-8731-5aa7-a679-66d43b6b11a2"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://silence-dream.github.io/2021/05/01/%E5%90%8E%E7%AB%AF/01-Sql%E5%9F%BA%E7%A1%80/"><header><a href="/tags/sql/" tabindex="-1" itemprop="url">sql</a><h1 id="CrawlerTitle" itemprop="name headline">SQL 基础</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">渡心</span><time itemprop="dateCreated datePublished" datetime="2021-05-01T00:00:00.000Z" title="发表于 2021-05-01 00:00:00">2021-05-01</time><time itemprop="dateCreated datePublished" datetime="2024-03-28T00:57:05.461Z" title="更新于 2024-03-28 00:57:05">2024-03-28</time></header><p>[[toc]]</p>
+<h2 id="了解-Sql"><a href="#了解-Sql" class="headerlink" title="了解 Sql"></a>了解 Sql</h2><h3 id="使用的工具"><a href="#使用的工具" class="headerlink" title="使用的工具"></a>使用的工具</h3><p>本文档的代码都是在 MySQL 8.0.23 版本下面运行的<br><a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/installer/">MySQL 下载地址 z</a><br><a target="_blank" rel="noopener" href="https://www.navicat.com.cn/">navicat 数据库可视化工具</a></p>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>数据库这个术语的用法很多，（从 SQL 的角度来看），数据库是一个以某种有组织的方式存储的数据集合。最简单的办法是将数据库想象为一个文件柜。这个文件柜是一个存放数据的物理位置，不管数据是什么也不管数据是如何组织的。<br>如果你使用 navicat 查看数据库，那么你可以在下面查看到数据库</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211103095421726.png" alt="image-20211103095421726"></p>
+<p>::: warning 注意数据库概念混淆</p>
+<p>人们通常用数据库这个术语来代表他们使用的数据库软件，这是不正确的，也因此产生了许多混淆。确切地说，数据库软件应称为数据库管理系统（DBMS）。数据库是通过 DBMS 创建和操纵的容器，而具体它究竟是什么，形式如何，各种数据库都不一样。</p>
+<p>:::</p>
+<h3 id="表"><a href="#表" class="headerlink" title="表"></a>表</h3><p>拥有了数据库我们就可以把数据存储在表中，表是一个存储数据的容器，它可以是一个文件，也可以是一个数据库中的一个表。</p>
+<p>表是一种结构化的文件，可用来存储某种特定类型的数据。</p>
+<p>数据库中的每个表都有一个名字来标识自己。这个名字是唯一的，即数据库中没有其他表具有相同的名字。</p>
+<p>表具有一些特性，这些特性定义了数据在表中如何存储，包含存储什么样的数据，数据如何分解，各部分信息如何命名等信息。描述表的这组信息就是所谓的模式（schema），模式可以用来描述数据库中特定的表，也可以用来描述整个数据库（和其中表的关系）。</p>
+<p>::: tip<br>关于数据库和表的布局及特性的信息。<br>:::</p>
+<p>在 navicaat 中，表的表现形式如图</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211103101446570.png" alt="image-20211103101446570"></p>
+<h3 id="列和数据类型"><a href="#列和数据类型" class="headerlink" title="列和数据类型"></a>列和数据类型</h3><p>表由列组成。列存储表中某部分的信息。<br>列是表中的一个数据单元，它可以是一个字段，也可以是一个索引。</p>
+<p>:::tip 列<br>表中的一个字段。所有表都是由一个或多个列组成的。<br>:::</p>
+<p>在 navicat 中，列的表现形式如图</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211103101837725.png" alt="image-20211103101837725"></p>
+<p>数据库中每个列都有相应的数据类型。数据类型（datatype）定义了列可以存储哪些数据种类。</p>
+<p>每个表列都有相应的数据类型，它限制（或允许）该列中存储的数据。</p>
+<p>数据类型限定了可存储在列中的数据种类（例如，防止在数值字段中录入字符值）。数据类型还帮助正确地分类数据，并在优化磁盘使用方面起 重要的作用。因此，在创建表时必须特别关注所用的数据类型。</p>
+<h3 id="行"><a href="#行" class="headerlink" title="行"></a>行</h3><p>表中的数据是按行存储的，所保存的每个记录存储在自己的行内。</p>
+<p>在 navicat 中，行的表现形式如图</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211103101837725.png" alt="image-20211103101837725"></p>
+<p>上图中的每一行都是表中的一个记录或者称为数据库记录(record)</p>
+<p>::: tip 说明：是记录还是行？</p>
+<p>你可能听到用户在提到行时称其为数据库记录（record）。这两个术语 多半是可以交替使用的，但从技术上说，行才是正确的术语</p>
+<p>:::</p>
+<h3 id="主键-primary-key"><a href="#主键-primary-key" class="headerlink" title="主键(primary key)"></a>主键(primary key)</h3><p>表中每一行都应该有一列（或几列）可以唯一标识自己。用户表可以用用户编号，订单表可以用订单号来标识主键。<br>唯一标识表中每行的这个列（或这几列）称为主键。主键用来表示一个 特定的行。没有主键，更新或删除表中特定行就极为困难，因为你不能 保证操作只涉及相关的行。</p>
+<p>::: tip 应该总是定义主键<br>虽然并不总是需要主键，但多数数据库设计者都会保证他们创建的每 个表具有一个主键，以便于以后的数据操作和管理。<br>:::</p>
+<p>表中的任何列都可以作为主键，只要它满足以下条件：</p>
+<ul>
+<li>任意两行都不具有相同的主键值；</li>
+<li>每一行都必须具有一个主键值（主键列不允许 NULL 值</li>
+<li>主键列中的值不允许修改或更新；</li>
+<li>主键值不能重用（如果某行从表中删除，它的主键不能赋给以后的新行）。</li>
+</ul>
+<p>在 navicat 中，主键的表现形式如图，右键表打开设计表</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211103103857767.png" alt="image-20211103103857767"></p>
+<h3 id="什么是-SQL"><a href="#什么是-SQL" class="headerlink" title="什么是 SQL"></a>什么是 SQL</h3><p>SQL（发音为字母 S-Q-L 或 sequel）是 Structured Query Language（结构化查询语言）的缩写。SQL 是一种专门用来与数据库沟通的语言。<br>与其他语言（如英语或 Java、C、PHP 这样的编程语言）不一样，SQL 中只有很少的词，这是有意而为的。设计 SQL 的目的是很好地完成一项 任务——提供一种从数据库中读写数据的简单有效的方法。</p>
+<p>SQL 有如下的优点。</p>
+<ul>
+<li>SQL 不是某个特定数据库供应商专有的语言。几乎所有重要的 DBMS 都支持 SQL，所以学习此语言使你几乎能与所有数据库打交道。</li>
+<li>SQL 简单易学。它的语句全都是由有很强描述性的英语单词组成，而 且这些单词的数目不多。</li>
+<li>SQL 虽然看上去很简单，但实际上是一种强有力的语言，灵活使用其 语言元素，可以进行非常复杂和高级的数据库操作。</li>
+</ul>
+<p>::: tip SQL 扩展知识</p>
+<p>许多 DBMS 厂商通过增加语句或指令，对 SQL 进行了扩展。这种扩 展的目的是提供执行特定操作的额外功能或简化方法。虽然这种扩展 很有用，但一般都是针对个别 DBMS 的，很少有两个以上的供应商支 持这种扩展。</p>
+<p>标准 SQL 由 ANSI 标准委员会管理，从而称为 ANSI SQL。所有主要 的 DBMS，即使有自己的扩展，也都支持 ANSI SQL。各个实现有自 己的名称，如 PL&#x2F;SQL、Transact-SQL 等。</p>
+<p>本教程 SQL 主要是 ANSI SQL。在使用某种 DBMS 特定的 SQL 时，会特别说明。</p>
+<p>:::</p>
+<h2 id="检索数据-SELECT"><a href="#检索数据-SELECT" class="headerlink" title="检索数据(SELECT)"></a>检索数据(SELECT)</h2><p>这一章节介绍如何使用 SELECT 语句从表中检索一个或多个数据列。</p>
+<p>开始练习之前记得下载<a href="#%E7%BB%83%E4%B9%A0%E6%95%B0%E6%8D%AE">练习数据</a></p>
+<h3 id="SELECT-语句"><a href="#SELECT-语句" class="headerlink" title="SELECT 语句"></a>SELECT 语句</h3><p>select 意思为选择</p>
+<p>为了使用 SELECT 检索表数据，必须至少给出两条信息——想选择什么， 以及从什么地方选择。</p>
+<h3 id="检索单列"><a href="#检索单列" class="headerlink" title="检索单列"></a>检索单列</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 检索 subways 表里面的 area_subway_name 字段</span></span><br><span class="line"><span class="keyword">SELECT</span> area_subway_name <span class="keyword">FROM</span> subways;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码利用 SELECT 语句从 subways 表中检索一个名为 area_subway_name 的列。所需的列名写在 SELECT 关键字之后，FROM 关键字指出从哪个表 中检索数据。</p>
+<p>语法总结：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 列名 <span class="keyword">FROM</span> 表名;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211104165622834.png" alt="image-20211104165622834"></p>
+<p>::: tip 未排序数据—怎么我执行的结果和图中不一样?</p>
+<p>如果你自己试验这个查询，可能会发现显示输出的数据顺序与这里的 不同。出现这种情况很正常。如果没有明确排序查询结果（下一课介绍），则返回的数据没有特定的顺序。返回数据的顺序可能是数据被添 加到表中的顺序，也可能不是。只要返回相同数目的行，就是正常的</p>
+<p>:::</p>
+<p>如上的一条简单 SELECT 语句将返回表中的所有行。数据没有过滤（过滤将得出结果集的一个子集），也没有排序。以后的章节将会详细讨论。</p>
+<p>::: warning SQL 语句的分号</p>
+<p>多条 SQL 语句必须以分号（；）分隔。有些 DBMS 不需要在单挑语句后面加分号，但是也有需要要分号的。</p>
+<p>总之，加上分号一定没有坏处。</p>
+<p>:::</p>
+<p>::: tip SQL 语句不区分大小写</p>
+<p>SQL 语句不区分大小写，因此 SELECT 与 select 是相同的。 同样，写成 Select 也没有关系。许多 SQL 开发人员喜欢对 SQL 关键字使用大写，而对列名和表名使用小写，</p>
+<p>:::</p>
+<p>::: tip 使用空格</p>
+<p>在处理 SQL 语句时，其中所有空格都被忽略。SQL 语句可以写成长长 的一行，也可以分写在多行。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> area_subway_name</span><br><span class="line"><span class="keyword">FROM</span> subways;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">area_subway_name</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">subways;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> area_subway_name <span class="keyword">FROM</span> subways;</span><br><span class="line"><span class="comment">-- 以上都是可以正常运行的,注意以分号结尾来表达一段代码的结束</span></span><br></pre></td></tr></table></figure>
+
+<p>:::</p>
+<h3 id="检索多列"><a href="#检索多列" class="headerlink" title="检索多列"></a>检索多列</h3><p>要想从一个表中检索多个列，仍然使用相同的 SELECT 语句。从检索单列一样只不过是要把检索的列名用逗号分隔罢了。</p>
+<p>::: tip 小心逗号引发的错误</p>
+<p>当选择多个列时，一定要在列名之间加上逗号，但最后一个列名后不加。如果在最后一个列名后加了逗号，将出现错误。</p>
+<p>:::</p>
+<p>下面的 SELECT 语句从 subways 表中检索 3 列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 检索 subways 表里面的 id,area_subway_name,station 字段</span></span><br><span class="line"><span class="keyword">SELECT</span> id,area_subway_name,station <span class="keyword">FROM</span> subways;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211104171647508.png" alt="image-20211104171647508"></p>
+<h3 id="检索所有列"><a href="#检索所有列" class="headerlink" title="检索所有列"></a>检索所有列</h3><p>和之前的检索单列、多列一样，检索所有列只是把列名换成了通配符（ * ）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 检索 subways 表里面的所有字段</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211104171915041.png" alt="image-20211104171915041"></p>
+<p>::: tip 注意通配符</p>
+<p>一般而言，除非你确实需要表中的每一列，否则最好别使用* 通配符。 虽然使用通配符能让你自己省事，不用明确列出所需列，但检索不需 要的列通常会降低检索和应用程序的性能</p>
+<p>:::</p>
+<h3 id="检索不重复的值"><a href="#检索不重复的值" class="headerlink" title="检索不重复的值"></a>检索不重复的值</h3><p>之前的练习案例你会发现重复出现了很多相同的值，如何让这些重复的值不出现呢？</p>
+<p>办法就是使用 DISTINCT 关键字, distinct 意为不同的、清楚的、确切的，顾名思义，它会返回数据库中不同的值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 检索重复的值</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> area_subway_name <span class="keyword">FROM</span> subways</span><br></pre></td></tr></table></figure>
+
+<p>输出结果,与<a href="#%E6%A3%80%E7%B4%A2%E5%8D%95%E5%88%97">检索单列</a>对比是不是少了重复的值</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211104172658631.png" alt="image-20211104172658631"></p>
+<p>::: tip 不能部分使用 DISTINCT</p>
+<p>DISTINCT 关键字作用于所有的列，不仅仅是跟在其后的那一列。例如，你指定<code>SELECT DISTINCT id,area_subway_name,station FROM subways;</code>除非指定的 两列完全相同，否则所有的行都会被检索出来。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211104173041365.png" alt="image-20211104173041365"></p>
+<p>:::</p>
+<h3 id="限制结果"><a href="#限制结果" class="headerlink" title="限制结果"></a>限制结果</h3><p>SELECT 语句返回指定表中所有匹配的行，很可能是每一行。如果你只想返回第一行或者一定数量的行，该怎么办呢？</p>
+<p>我们可以使用 TOP 但是注意的是在各种数据库中这一 SQL 的实现并不相同。由于本教程使用的是 MySQL 所以只显示 MySQL 的用法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- top 选择前面 5 条数据</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways LIMIT <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211104212011545.png" alt="image-20211104212011545"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- top 选择第 5 行往后的 5 行数据 用数学语言表示 (5,10]</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways LIMIT <span class="number">5</span> <span class="keyword">OFFSET</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211104212027024.png" alt="image-20211104212027024"></p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>在很多编辑器里面你都可以使用快捷键<code>ctrl+/</code>来注释所以本章只是简单是说明有哪些注释可以用的。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 注释</span></span><br><span class="line"># 注释</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">多行注释</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="排序检索数据-ORDER-BY"><a href="#排序检索数据-ORDER-BY" class="headerlink" title="排序检索数据(ORDER BY )"></a>排序检索数据(ORDER BY )</h2><p>SQL 语句返回某个数据库表的单个列。是没有特定顺序的。</p>
+<p>其实，检索出的数据并不是随机显示的。如果不排序，数据一般将以它在 底层表中出现的顺序显示，这有可能是数据最初添加到表中的顺序。但是， 如果数据随后进行过更新或删除，那么这个顺序将会受到 DBMS 重用回 收存储空间的方式的影响。因此，如果不明确控制的话，则最终的结果不 能（也不应该）依赖该排序顺序。关系数据库设计理论认为，如果不明确 规定排序顺序，则不应该假定检索出的数据的顺序有任何意义。</p>
+<p>::: 子句 (clause)</p>
+<p>SQL 语句由子句构成，有些子句是必需的，有些则是可选的。一个子 句通常由一个关键字加上所提供的数据组成。子句的例子有我们在前一课看到的 SELECT 语句的 FROM 子句。</p>
+<p>:::</p>
+<p>为了明确地排序用 SELECT 语句检索出的数据，可使用 ORDER BY 子句。</p>
+<p>ORDER 意思为命令、顺序。</p>
+<p>ORDER BY 子句取一个或多个列的名字，据此对输出进行排序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> area_subway_name <span class="keyword">FROM</span> subways <span class="keyword">ORDER</span> <span class="keyword">BY</span> area_subway_name;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211105173054891.png" alt="image-20211105173054891"></p>
+<p>:::tip 注意：ORDER BY 子句的位置</p>
+<p>在指定一条 ORDER BY 子句时，应该保证它是 SELECT 语句中最后一条子句。如果它不是最后的子句，将会出现错误消息。</p>
+<p>:::</p>
+<h3 id="按多个列排序"><a href="#按多个列排序" class="headerlink" title="按多个列排序"></a>按多个列排序</h3><p>我们有时候的排序是不止一个裂的数据排序。例如， 地铁路线，我们希望先按地铁城市名排序，然后再按照地铁线路，最后按照地铁站排序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> area_subway_name,station,platform <span class="keyword">FROM</span> subways <span class="keyword">ORDER</span> <span class="keyword">BY</span> area_subway_name,station,platform;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211105195823926.png" alt="image-20211105195823926"></p>
+<h3 id="按列位置排序"><a href="#按列位置排序" class="headerlink" title="按列位置排序"></a>按列位置排序</h3><p>除了能用列名指出排序顺序外，ORDER BY 还支持按相对列位置进行排 序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> area_subway_name,station,platform <span class="keyword">FROM</span> subways <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211105195823926.png" alt="image-20211105195823926"></p>
+<p>可以看到，这里的输出与上面的查询相同，不同之处在于 ORDER BY 子句。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* select 后面选择了 area_subway_name,station,platform 列</span></span><br><span class="line"><span class="comment">order by 1,2,3 代表了,先按 area_subway_name 排序,然后按 station 排序,最后按 platform 排序</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">SELECT</span> area_subway_name,station,platform <span class="keyword">FROM</span> subways <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这一技术的主要好处在于不用重新输入列名。但它也有缺点。首先，不明 确给出列名有可能造成错用列名排序。其次，在对 SELECT 清单进行更改 时容易错误地对数据进行排序（忘记对 ORDER BY 子句做相应的改动）。 最后，如果进行排序的列不在 SELECT 清单中，显然不能使用这项技术。</p>
+<h3 id="指定排序方向-（升序、降序）"><a href="#指定排序方向-（升序、降序）" class="headerlink" title="指定排序方向 （升序、降序）"></a>指定排序方向 （升序、降序）</h3><p>数据排序不限于升序排序（从 A 到 Z），这只是默认的排序顺序。还可以 使用 ORDER BY 子句进行降序（从 Z 到 A）排序。为了进行降序排序， 必须指定 DESC 关键字。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- id 降序排列</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">order</span> <span class="keyword">by</span> id <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211105210446735.png" alt="image-20211105210446735"></p>
+<p>DESC 关键字只应用到直接位于其前面的列名。</p>
+<p>:::warning 在多个列上降序排序</p>
+<p>如果想在多个列上进行降序排序，必须对每一列指定 DESC 关键字。</p>
+<p>:::</p>
+<p>，DESC 是 DESCENDING 的缩写，这两个关键字都可以使用。与 DESC 相对的是 ASC（或 ASCENDING），在升序排序时可以指定它。但是你指定也没啥用，因为升序的默认的。</p>
+<p>::: tip</p>
+<p>在对文本性数据进行排序时，A 与 a 相同吗？a 位于 B 之前，还是 Z 之后？这些问题不是理论问题，其答案取决于数据库的设置方式。</p>
+<p>在字典（dictionary）排序顺序中，A 被视为与 a 相同，这是大多数数 据库管理系统的默认行为。但是，许多 DBMS 允许数据库管理员在需 要时改变这种行为（如果你的数据库包含大量外语字符，可能必须这 样做）。</p>
+<p>这里的关键问题是，如果确实需要改变这种排序顺序，用简单的 ORDER BY 子句可能做不到。你必须请求数据库管理员的帮助</p>
+<p>:::</p>
+<h2 id="过滤数据-WHERE"><a href="#过滤数据-WHERE" class="headerlink" title="过滤数据(WHERE)"></a>过滤数据(WHERE)</h2><h3 id="使用-WHERE-子句"><a href="#使用-WHERE-子句" class="headerlink" title="使用 WHERE 子句"></a>使用 WHERE 子句</h3><p>数据库表一般包含大量的数据，很少需要检索表中的所有行。通常只会 根据特定操作或报告的需要提取表数据的子集。只检索所需数据需要指 定搜索条件（search criteria），搜索条件也称为过滤条件（filter condition）。</p>
+<p>人话就是寻找符合条件的数据</p>
+<p>在 SELECT 语句中，数据根据 WHERE 子句中指定的搜索条件进行过滤。 <code>WHERE 子句在表名（FROM 子句）</code>之后给出，如下所示：<br>输</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语句使用通配符检索所有的列，但是只会返回 id=1987的行</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">1987</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211105211950641.png" alt="image-20211105211950641"></p>
+<p>::: tip 注意：WHERE 子句的位置</p>
+<p>在同时使用 ORDER BY 和 WHERE 子句时，应该让 <code>ORDER BY 位于 WHERE 之后</code>，否则将会产生错误（[关于 ORDER BY 的使用](#排序检索数据(ORDER BY ))）</p>
+<p>:::</p>
+<h3 id="WHERE-子句操作符"><a href="#WHERE-子句操作符" class="headerlink" title="WHERE 子句操作符"></a>WHERE 子句操作符</h3><p>我们可以通过子句操作符来获得我们想要的数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> 表名 <span class="keyword">where</span> 列名 运算符 想要的结果</span><br></pre></td></tr></table></figure>
+
+<p>让我们来几个案例来看看。</p>
+<p>找出 id 小于 3000 的数据。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">WHERE</span> id <span class="operator">&lt;</span> <span class="number">3000</span>;</span><br></pre></td></tr></table></figure>
+
+<p>找出 area_subway_name 不是郑州的数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">WHERE</span> area_subway_name <span class="operator">&lt;&gt;</span> &quot;郑州&quot;;</span><br><span class="line"><span class="comment">-- 等价</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">WHERE</span> area_subway_name <span class="operator">!=</span> &quot;郑州&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>::: tip 何时使用引号</p>
+<p>如果将值与字符串类型的 列进行比较，就需要限定引号。用来与数值列进行比较的值不用引号。</p>
+<p>:::</p>
+<p>::: tip 是!&#x3D;还是&lt;&gt;？</p>
+<p>!&#x3D; 和 &lt;&gt; 通常可以互换。但是，并非所有 DBMS 都支持这两种不等于操 作符。例如，Microsoft Access 支持 &lt;&gt; 而不支持 !&#x3D; 。如果有疑问，请参 阅相应的 DBMS 文档</p>
+<p>:::</p>
+<h4 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h4><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>相加：将符号两边的数值加起来。</td>
+<td>a + b 得 30</td>
+</tr>
+<tr>
+<td>-</td>
+<td>相减：从最边的操作数中减去右边的操作数。</td>
+<td>a - b 得 -10</td>
+</tr>
+<tr>
+<td>*</td>
+<td>相乘：将两边的操作数相乘。</td>
+<td>a * b 得 200</td>
+</tr>
+<tr>
+<td>&#x2F;</td>
+<td>相除：用右边的操作数除以左边的操作数。</td>
+<td>b &#x2F; a 得 2</td>
+</tr>
+<tr>
+<td>%</td>
+<td>取余：用右边的操作数除以左边的操作数，并返回余数。</td>
+<td>b % a 得 0</td>
+</tr>
+</tbody></table>
+<h4 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h4><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;</td>
+<td>检查两个操作数的值是否相等，是的话返回 true。</td>
+<td>(a &#x3D; b) 不为 true。</td>
+</tr>
+<tr>
+<td>!&#x3D; 和 &lt;&gt;</td>
+<td>检查两个操作数的值是否相等，如果不等则返回 true。</td>
+<td>(a !&#x3D; b) 为 true。</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>检查左边的操作数是否大于右边的操作数，是的话返回真。</td>
+<td>(a &gt; b) 不为 true。</td>
+</tr>
+<tr>
+<td>&gt;&#x3D;</td>
+<td>检查左边的操作数是否大于或等于右边的操作数，是的话返回真。</td>
+<td>(a &gt;&#x3D; b) 不为 true。</td>
+</tr>
+<tr>
+<td>!</td>
+<td>检查左边的操作数是否不小于右边的操作数，是的话返回真。</td>
+<td>(a ! b)</td>
+</tr>
+<tr>
+<td>!&gt;</td>
+<td>检查左边的操作数是否不大于右边的操作数，是的话返回真。</td>
+<td>(a !&gt; b) 为 true。</td>
+</tr>
+</tbody></table>
+<h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ALL</td>
+<td>ALL 运算符用于将一个值同另一个值集中所有的值进行比较。</td>
+</tr>
+<tr>
+<td>AND</td>
+<td>AND 运算符使得在 WHERE 子句中可以同时存在多个条件。</td>
+</tr>
+<tr>
+<td>ANY</td>
+<td>ANY 运算符用于将一个值同条件所指定的列表中的任意值相比较。</td>
+</tr>
+<tr>
+<td>BETWEEN</td>
+<td>给定最小值和最大值，BETWEEN 运算符可以用于搜索区间内的值。</td>
+</tr>
+<tr>
+<td>EXISTS</td>
+<td>EXISTS 运算符用于在表中搜索符合特定条件的行。</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>IN 运算符用于将某个值同指定的一列字面值相比较。</td>
+</tr>
+<tr>
+<td>LIKE</td>
+<td>LIKE 运算符用于使用通配符对某个值和与其相似的值做出比较。</td>
+</tr>
+<tr>
+<td>NOT</td>
+<td>NOT 操作符反转它所作用的操作符的意义。例如，NOT EXISTS、NOT BETWEEN、NOT IN 等。这是一个求反运算符。</td>
+</tr>
+<tr>
+<td>OR</td>
+<td>OR 运算符用于在 SQL 语句中连接多个条件。</td>
+</tr>
+<tr>
+<td>IS NULL</td>
+<td>NULL Operator 用于将某个值同 NULL 作比较。</td>
+</tr>
+<tr>
+<td>UNIQUE</td>
+<td>UNIQUE 运算符检查指定表的所有行，以确定没有重复。</td>
+</tr>
+</tbody></table>
+<h3 id="范围值检查"><a href="#范围值检查" class="headerlink" title="范围值检查"></a>范围值检查</h3><p>要检查某个范围的值，可以使用 BETWEEN 操作符。其语法与其他 WHERE 子句的操作符稍有不同，因为它需要两个值，即范围的开始值和结束值。</p>
+<p>让我们来检索 id 是 2000 到 2005 之间的数据吧。数学语言表述为[2000,2005]</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 范围值检查</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">WHERE</span> id <span class="keyword">BETWEEN</span> <span class="number">2000</span> <span class="keyword">AND</span> <span class="number">2005</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211108155024457.png" alt="image-20211108155024457"></p>
+<p>在使用 BETWEEN 时，必须指定两个值——所需范围的低端值和高端值。这两个值必须用 AND 关键字分隔。BETWEEN 匹配范围中所有的值，包括指定的开始值和结束值。</p>
+<h3 id="空值检查"><a href="#空值检查" class="headerlink" title="空值检查"></a>空值检查</h3><p>在创建表时，表设计人员可以指定其中的列能否不包含值。在一个列不 包含值时，称其包含空值 NULL。</p>
+<p>::: tip NULL</p>
+<p>无值（no value），它与字段包含 0、空字符串或仅仅包含空格不同。</p>
+<p>:::</p>
+<p>确定值是否为 NULL，不能简单地检查是否 &#x3D; NULL。SELECT 语句有一个 特殊的 WHERE 子句，可用来检查具有 NULL 值的列。这个 WHERE 子句就 是 IS NULL 子句。其语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 空值检查</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">WHERE</span> id <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这条语句返回所有数据(空的 id 字段)，因为表中没有空的行，所以没有返回数据。</p>
+<h2 id="高级数据过滤"><a href="#高级数据过滤" class="headerlink" title="高级数据过滤"></a>高级数据过滤</h2><p>这一课讲授如何组合 WHERE 子句以建立功能更强、更高级的搜索条件。 我们还将学习如何使用 NOT 和 IN 操作符。</p>
+<h3 id="组合-WHERE-子句"><a href="#组合-WHERE-子句" class="headerlink" title="组合 WHERE 子句"></a>组合 WHERE 子句</h3><p>为了进行更强的过滤控制，SQL 允许给出多个 WHERE 子句。</p>
+<h4 id="AND-操作符"><a href="#AND-操作符" class="headerlink" title="AND 操作符"></a>AND 操作符</h4><p>找出 id 小于 2007 且大于 2000 的数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- AND</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">WHERE</span> id <span class="operator">&gt;</span> <span class="number">2000</span> <span class="keyword">AND</span> id <span class="operator">&lt;</span> <span class="number">2007</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211108161956721.png" alt="image-20211108161956721"></p>
+<p>::: AND</p>
+<p>用在 WHERE 子句中的关键字，用来指示检索满足所有给定条件的行。</p>
+<p>:::</p>
+<p>这个例子只包含一个 AND 子句，因此最多有两个过滤条件。可以增加多 个过滤条件，每个条件间都要使用 AND 关键字。</p>
+<h4 id="OR-操作符"><a href="#OR-操作符" class="headerlink" title="OR 操作符"></a>OR 操作符</h4><p>OR 操作符与 AND 操作符正好相反，它指示 DBMS 检索匹配任一条件的行。事实上，许多 DBMS 在 OR WHERE 子句的第一个条件得到满足的情 况下，就不再计算第二个条件了（在第一个条件满足时，不管第二个条 件是否满足，相应的行都将被检索出来）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- OR</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">2000</span> <span class="keyword">OR</span> id <span class="operator">=</span> <span class="number">2001</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211108165746007.png" alt="image-20211108165746007"></p>
+<p>这一段 SQL 语句返回了 id &#x3D; 2000 或 id &#x3D; 2001 的数据。</p>
+<p>::: tip OR</p>
+<p>WHERE 子句中使用的关键字，用来表示检索匹配任一给定条件的行。</p>
+<p>:::</p>
+<h3 id="IN-操作符"><a href="#IN-操作符" class="headerlink" title="IN 操作符"></a>IN 操作符</h3><p>IN 操作符用来指定条件范围，范围中的每个条件都可以进行匹配。</p>
+<p>IN 取 一组由逗号分隔、括在圆括号中的合法值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- IN</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">WHERE</span> code <span class="keyword">IN</span>(&quot;SUY|54d7ed78-86ac-7095&quot;,&quot;SUY|15c420a5-8ea4-9495&quot;);</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211108171648832.png" alt="image-20211108171648832"></p>
+<p>此 SELECT 语句检索 code 列里面符合 IN 操作符后面由逗号分隔的合法值，这些值必须括在圆括号中。</p>
+<p>为什么要使用 IN 操作符？其优点如下。</p>
+<ul>
+<li>在有很多合法选项时，IN 操作符的语法更清楚，更直观。</li>
+<li>在与其他 AND 和 OR 操作符组合使用 IN 时，求值顺序更容易管理。</li>
+<li>IN 操作符一般比一组 OR 操作符执行得更快（在上面这个合法选项很少的例子中，你看不出性能差异）。</li>
+<li>IN 的最大优点是可以包含其他 SELECT 语句，能够更动态地建立 WHERE 子句。</li>
+</ul>
+<h3 id="NOT-操作符"><a href="#NOT-操作符" class="headerlink" title="NOT 操作符"></a>NOT 操作符</h3><p>WHERE 子句中的 NOT 操作符有且只有一个功能，那就是否定其后所跟的任何条件。</p>
+<p>::: tip NOT</p>
+<p>WHERE 子句中用来否定其后条件的关键字。</p>
+<p>:::</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- NOT</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">WHERE</span> area_subway_name <span class="keyword">NOT</span> <span class="keyword">IN</span>(&quot;郑州&quot;,&quot;上海&quot;) <span class="keyword">ORDER</span> <span class="keyword">BY</span> area_subway_name;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211108172846172.png" alt="image-20211108172846172"></p>
+<p>返回 area_subway_name 不是 郑州和上海的数据，并进行了 area_subway_name 排序</p>
+<h2 id="用通配符进行过滤"><a href="#用通配符进行过滤" class="headerlink" title="用通配符进行过滤"></a>用通配符进行过滤</h2><p>这一章介绍什么是通配符、如何使用通配符以及怎样使用 LIKE 操作符 进行通配搜索，以便对数据进行复杂过滤。</p>
+<h3 id="LIKE-操作符进行模糊查询"><a href="#LIKE-操作符进行模糊查询" class="headerlink" title="LIKE 操作符进行模糊查询"></a>LIKE 操作符进行模糊查询</h3><p>前面介绍的所有操作符都是针对已知值进行过滤的。在我们的日常使用中肯定还有未知的，比如寻找姓李的同学有几个之类的。例如下面的例子。</p>
+<p>查找姓王的学生</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- LINK</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> sname <span class="keyword">LIKE</span> &quot;王%&quot;;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211108201951329.png" alt="image-20211108201951329"></p>
+<p>上面的代码使用了通配符。</p>
+<p>通配符本身实际上是 SQL 的 WHERE 子句中有特殊含义的字符，SQL 支持 几种通配符。为在搜索子句中使用通配符，必须使用 LIKE 操作符。LIKE 指示 DBMS，后跟的搜索模式利用通配符匹配而不是简单的相等匹配进 行比较。</p>
+<p>::: tip 通配符（wildcard）</p>
+<p>用来匹配值的一部分的特殊字符。</p>
+<p>:::</p>
+<p>::: tip 搜索模式（search pattern）</p>
+<p>由字面值、通配符或两者组合构成的搜索条件</p>
+<p>:::</p>
+<p>::: tip 谓词（predicate）</p>
+<p>操作符何时不是操作符？答案是，它作为谓词时。从技术上说，LIKE 是谓词而不是操作符。虽然最终的结果是相同的，但应该对此术语有 所了解，以免在 SQL 文献或手册中遇到此术语时不知所云</p>
+<p>:::</p>
+<p><code>通配符搜索只能用于文本字段（字符串），非文本数据类型字段不能使用 通配符搜索。</code></p>
+<h3 id="百分号（-）通配符"><a href="#百分号（-）通配符" class="headerlink" title="百分号（%）通配符"></a>百分号（%）通配符</h3><p>最常使用的通配符是百分号（%）。在搜索串中，% 表示任何字符出现任意次数。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- LINK</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> sname <span class="keyword">LIKE</span> &quot;王%&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>以上代码查找了以<code>王</code>开头的字段。</p>
+<p>::: tip Access 通配符</p>
+<p>如果使用的是 Microsoft Access，需要使用*而不是%。</p>
+<p>:::</p>
+<p>::: tip 说明：区分大小写</p>
+<p>根据 DBMS 的不同及其配置，搜索可以是区分大小写的。如果区分大 小写，则 “A%” 与 “a%”是不一样的</p>
+<p>:::</p>
+<p>通配符可在搜索模式中的任意位置使用，并且可以使用多个通配符。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> class <span class="keyword">LIKE</span> &quot;%95033%&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>搜索模式 “%95033%”表示匹配任何位置上包含文本 95033 的值，不论它之前或者之后出现什么字符。</p>
+<p>::: warning 请注意 NULL</p>
+<p>通配符%看起来像是可以匹配任何东西，但有个例外，这就是 NULL。 子句 <code>WHERE name LIKE &#39;%&#39;</code>不会匹配产品名称为 NULL 的行。</p>
+<p>:::</p>
+<h3 id="下划线（-）通配符"><a href="#下划线（-）通配符" class="headerlink" title="下划线（_）通配符"></a>下划线（_）通配符</h3><p>另一个有用的通配符是下划线（_）。下划线的用途与 % 一样，但它只匹配 单个字符，而不是多个字符。</p>
+<p>::: tip 说明：Access 通配符</p>
+<p>如果使用的是 Microsoft Access，需要使用?而不是_。</p>
+<p>:::</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 下划线（_）通配符</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">WHERE</span> id <span class="keyword">LIKE</span> &quot;__80&quot;;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211108210409362.png" alt="image-20211108210409362"></p>
+<p>注意使用了两个下划线用来匹配所以是匹配前面任意两个字符后面以 80 结尾的数据。</p>
+<p>可以与 % 通配符对比一下</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> subways <span class="keyword">WHERE</span> id <span class="keyword">LIKE</span> &quot;%80&quot;;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211108210430171.png" alt="image-20211108210430171"></p>
+<p>与%能匹配 0 个字符不同，_总是刚好匹配一个字符，不能多也不能少</p>
+<h3 id="使用通配符的技巧"><a href="#使用通配符的技巧" class="headerlink" title="使用通配符的技巧"></a>使用通配符的技巧</h3><p>正如所见，SQL 的通配符很有用。但这种功能是有代价的，即通配符搜 索一般比前面讨论的其他搜索要耗费更长的处理时间。这里给出一些使 用通配符时要记住的技巧。</p>
+<ul>
+<li>不要过度使用通配符。如果其他操作符能达到相同的目的，应该使用 其他操作符。</li>
+<li>在确实需要使用通配符时，也尽量不要把它们用在搜索模式的开始 处。把通配符置于开始处，搜索起来是最慢的。</li>
+<li>仔细注意通配符的位置。如果放错地方，可能不会返回想要的数据。</li>
+</ul>
+<h2 id="计算字段"><a href="#计算字段" class="headerlink" title="计算字段"></a>计算字段</h2><p>存储在数据库表中的数据一般不是应用程序所需要的格式，下面举几个 例子。</p>
+<ul>
+<li>需要显示公司名，同时还需要显示公司的地址，但这两个信息存储在 不同的表列中。</li>
+<li>城市、州和邮政编码存储在不同的列中（应该这样），但邮件标签打 印程序需要把它们作为一个有恰当格式的字段检索出来。</li>
+<li>列数据是大小写混合的，但报表程序需要把所有数据按大写表示出来。</li>
+<li>物品订单表存储物品的价格和数量，不存储每个物品的总价格（用价 格乘以数量即可）。但为打印发票，需要物品的总价格。  需要根据表数据进行诸如总数、平均数的计算。</li>
+</ul>
+<p>在上述每个例子中，存储在表中的数据都不是应用程序所需要的。我们 需要直接从数据库中检索出转换、计算或格式化过的数据，而不是检索 出数据，然后再在客户端应用程序中重新格式化。</p>
+<p>这就是计算字段可以派上用场的地方了。与前几课介绍的列不同，计算 字段并不实际存在于数据库表中。计算字段是运行时在 SELECT 语句内 创建的。</p>
+<p>::: tip 字段（field）</p>
+<p>基本上与列（column）的意思相同，经常互换使用，不过数据库列一 般称为列，而术语字段通常与计算字段一起使用。</p>
+<p>:::</p>
+<p>需要特别注意，只有数据库知道 SELECT 语句中哪些列是实际的表列， 哪些列是计算字段。从客户端（如应用程序）来看，计算字段的数据与 其他列的数据的返回方式相同。</p>
+<p>::: 提示：客户端与服务器的格式</p>
+<p>在 SQL 语句内可完成的许多转换和格式化工作都可以直接在客户端 应用程序内完成。但一般来说，在数据库服务器上完成这些操作比在 客户端中完成要快得多。</p>
+<p>:::</p>
+<h3 id="拼接字段"><a href="#拼接字段" class="headerlink" title="拼接字段"></a>拼接字段</h3><p>我们直接来看案例</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 拼接字段</span></span><br><span class="line"><span class="keyword">SELECT</span> CONCAT(sno,sname) <span class="keyword">from</span> students;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211108211632207.png" alt="image-20211108211632207"></p>
+<p>如果我们想去掉数据中的前后空格可以使用 TRIM()函数，同时还有 LTRIM( )去掉左空格和 RTIRM( )去掉右空格；</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> CONCAT(<span class="built_in">trim</span>(sno),rtrim(sname)) <span class="keyword">from</span> students;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用别名"><a href="#使用别名" class="headerlink" title="使用别名"></a>使用别名</h3><p>从前面的输出可以看到，SELECT 语句可以很好地拼接地址字段。但是， 这个新计算列的名字是什么呢？实际上它没有名字，它只是一个值。如 果仅在 SQL 查询工具中查看一下结果，这样没有什么不好。但是，一个 未命名的列不能用于客户端应用中，因为客户端没有办法引用它。<br>为了解决这个问题，SQL 支持列别名。别名（alias）是一个字段或值的 替换名。别名用 AS 关键字赋予。请看下面的 SELECT 语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 拼接字段</span></span><br><span class="line"><span class="keyword">SELECT</span> CONCAT(sno,sname) <span class="keyword">as</span> noAndName <span class="keyword">from</span> students;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211108212307162.png" alt="image-20211108212307162"></p>
+<h3 id="执行算术计算"><a href="#执行算术计算" class="headerlink" title="执行算术计算"></a>执行算术计算</h3><p>计算字段的另一常见用途是对检索出的数据进行算术计算。</p>
+<p>查看案例</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 执行算术计算</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span>,sno<span class="operator">*</span>score <span class="keyword">as</span> product <span class="keyword">FROM</span> students;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211109211920796.png" alt="image-20211109211920796"></p>
+<h2 id="使用函数处理数据"><a href="#使用函数处理数据" class="headerlink" title="使用函数处理数据"></a>使用函数处理数据</h2><p>这一章介绍什么是函数，DBMS 支持何种函数，以及如何使用这些函数； 还将讲解为什么 SQL 函数的使用可能会带来问题。</p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>与大多数其他计算机语言一样，SQL 也可以用函数来处理数据。函数一 般是在数据上执行的，为数据的转换和处理提供了方便。</p>
+<p>之前我们见过的 trim() 就是一个函数。</p>
+<h3 id="使用函数"><a href="#使用函数" class="headerlink" title="使用函数"></a>使用函数</h3><p>大多数 SQL 实现支持以下类型的函数。</p>
+<ul>
+<li>用于处理文本字符串（如删除或填充值，转换值为大写或小写）的文 本函数。</li>
+<li>用于在数值数据上进行算术操作（如返回绝对值，进行代数运算）的 数值函数。</li>
+<li>用于处理日期和时间值并从这些值中提取特定成分（如返回两个日期 之差，检查日期有效性）的日期和时间函数。</li>
+<li>返回 DBMS 正使用的特殊信息（如返回用户登录信息）的系统函数。</li>
+</ul>
+<p>::: danger 8.2</p>
+<p>81 页 正在施工中….</p>
+<p>:::</p>
+<h3 id="MySQL-常用函数"><a href="#MySQL-常用函数" class="headerlink" title="MySQL 常用函数"></a>MySQL 常用函数</h3><h2 id="汇总数据"><a href="#汇总数据" class="headerlink" title="汇总数据"></a>汇总数据</h2><h3 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h3><p>我们经常需要汇总数据而不用把它们实际检索出来，为此 SQL 提供了专 门的函数。使用这些函数，SQL 查询可用于检索数据，以便分析和报表 生成。这种类型的检索例子有：</p>
+<ul>
+<li>确定表中行数（或者满足某个条件或包含某个特定值的行数）；</li>
+<li>获得表中某些行的和；</li>
+<li>找出表列（或所有行或某些特定的行）的最大值、最小值、平均值。</li>
+</ul>
+<p>::: tip 聚集函数（aggregate function）</p>
+<p>对某些行运行的函数，计算并返回一个值。</p>
+<p>:::</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AVG()</td>
+<td>返回某列的平均值</td>
+</tr>
+<tr>
+<td>COUNT()</td>
+<td>返回某列的行数</td>
+</tr>
+<tr>
+<td>MAX()</td>
+<td>返回某列的最大值</td>
+</tr>
+<tr>
+<td>MIN()</td>
+<td>返回某列的最小值</td>
+</tr>
+<tr>
+<td>SUM()</td>
+<td>返回某列值之和</td>
+</tr>
+</tbody></table>
+<p>::: tip 列值为 null</p>
+<p>AVG()函数忽略列值为 NULL 的行。</p>
+<p>如果指定列名，则 COUNT()函数会忽略指定列的值为空的行，但如果 COUNT()函数中用的是星号（*），则不忽略。</p>
+<p>MAX()函数忽略列值为 NULL 的行。</p>
+<p>MIN()函数忽略列值为 NULL 的行。</p>
+<p>SUM()函数忽略列值为 NULL 的行。</p>
+<p>:::</p>
+<h2 id="分组数据-GROUP"><a href="#分组数据-GROUP" class="headerlink" title="分组数据 GROUP"></a>分组数据 GROUP</h2><p>这一课介绍如何分组数据，以便汇总表内容的子集。这涉及两个新 SELECT 语句子句：GROUP BY 子句和 HAVING 子句。</p>
+<h3 id="数据分组"><a href="#数据分组" class="headerlink" title="数据分组"></a>数据分组</h3><p>使用 SQL 聚集函数可以汇总数据。这样，我们就能够对行进行计数，计算和与平均数，不检索所有数据就获得大值和小值。</p>
+<p>目前为止的所有计算都是在表的所有数据或匹配特定的 WHERE 子句的数 据上进行的。例如下面的例子</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> area_subway_name,<span class="built_in">COUNT</span>(area_subway_name) <span class="keyword">from</span> subways <span class="keyword">WHERE</span> area_subway_name <span class="operator">=</span> <span class="string">&#x27;郑州&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211111171641909.png" alt="image-20211111171641909"></p>
+<p>如果我们要返回每个地铁名称出现的次数怎么办?总可能一个一个的去判断吧?</p>
+<p>这时候就需要使用到分组了。使用分组可以将数据分为多个逻辑组， 对每个组进行聚集计算。</p>
+<h3 id="创建分组"><a href="#创建分组" class="headerlink" title="创建分组"></a>创建分组</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> area_subway_name,<span class="built_in">COUNT</span>(area_subway_name) <span class="keyword">from</span> subways <span class="keyword">GROUP</span> <span class="keyword">BY</span> area_subway_name;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211111171830400.png" alt="image-20211111171830400"></p>
+<p>因为使用了 GROUP BY，就不必指定要计算和估值的每个组了。系统会自 动完成。GROUP BY 子句指示 DBMS 分组数据，然后对每个组而不是整 个结果集进行聚集。</p>
+<p>在使用 GROUP BY 子句前，需要知道一些重要的规定。</p>
+<ul>
+<li>GROUP BY 子句可以包含任意数目的列，因而可以对分组进行嵌套， 更细致地进行数据分组。</li>
+<li>如果在 GROUP BY 子句中嵌套了分组，数据将在后指定的分组上进 行汇总。换句话说，在建立分组时，指定的所有列都一起计算（所以 不能从个别的列取回数据）。</li>
+<li>GROUP BY 子句中列出的每一列都必须是检索列或有效的表达式（但 不能是聚集函数）。如果在 SELECT 中使用表达式，则必须在 GROUP BY 子句中指定相同的表达式。不能使用别名。</li>
+<li>大多数 SQL 实现不允许 GROUP BY 列带有长度可变的数据类型（如文 本或备注型字段）。</li>
+<li>除聚集计算语句外，SELECT 语句中的每一列都必须在 GROUP BY 子句 中给出。</li>
+<li>如果分组列中包含具有 NULL 值的行，则 NULL 将作为一个分组返回。 如果列中有多行 NULL 值，它们将分为一组。</li>
+<li><code>GROUP BY 子句必须出现在 WHERE 子句之后，ORDER BY 子句之前。</code></li>
+</ul>
+<h3 id="过滤分组"><a href="#过滤分组" class="headerlink" title="过滤分组"></a>过滤分组</h3><p>除了能用 GROUP BY 分组数据外，SQL 还允许过滤分组，规定包括哪些 分组，排除哪些分组。例如，上一节的例子中我们不想看见郑州的统计次数就可以这样写。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 过滤分组</span></span><br><span class="line"><span class="keyword">SELECT</span> area_subway_name,<span class="built_in">COUNT</span>(area_subway_name) <span class="keyword">from</span> subways <span class="keyword">GROUP</span> <span class="keyword">BY</span> area_subway_name <span class="keyword">having</span> area_subway_name <span class="operator">!=</span> <span class="string">&#x27;郑州&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211111172340655.png" alt="image-20211111172340655"></p>
+<p>还记得<a href="#%E5%88%9B%E5%BB%BA%E5%88%86%E7%BB%84">上一节</a>,”使用 GROUP BY 子句前的规定”吗?GROUP 子句 where 子句之后,order by 子句之前,而且因为 where 过滤指定的是<code>行</code>而不是<code>分组</code>。事实上，where 没有分组的概念。</p>
+<p>那么，不使用 WHERE 使用什么呢？SQL 为此提供了另一个子句，就是 HAVING 子句。HAVING 非常类似于 WHERE。事实上，目前为止所学过的 所有类型的 WHERE 子句都可以用 HAVING 来替代。唯一的差别是，WHERE 过滤行，而 HAVING 过滤分组。</p>
+<p>::: tip 说明：HAVING 和 WHERE 的差别</p>
+<p>这里有另一种理解方法，WHERE 在数据分组前进行过滤，HAVING 在数 据分组后进行过滤。这是一个重要的区别，WHERE 排除的行不包括在 分组中。这可能会改变计算值，从而影响 HAVING 子句中基于这些值 过滤掉的分组。</p>
+<p>:::</p>
+<p>::: tip 说明：使用 HAVING 和 WHERE</p>
+<p>HAVING 与 WHERE 非常类似，如果不指定 GROUP BY，则大多数 DBMS 会同等对待它们。不过，你自己要能区分这一点。使用 HAVING 时应 该结合 GROUP BY 子句，而 WHERE 子句用于标准的行级过滤。</p>
+<p>:::</p>
+<h3 id="分组和排序"><a href="#分组和排序" class="headerlink" title="分组和排序"></a>分组和排序</h3><p>GROUP BY 和 ORDER BY 经常完成相同的工作，但它们非常不同，理解这一点很重要。以下汇总了它们之间的差别。</p>
+<table>
+<thead>
+<tr>
+<th>ORDER BY</th>
+<th>GROUP BY</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>对产生的输出排序</td>
+<td>对行分组，但输出可能不是分组的顺序</td>
+</tr>
+<tr>
+<td>任意列都可以使用（甚至非选择的列也可以使用）</td>
+<td>只可能使用选择列或表达式列，而且必须使用每个选择列 表达式</td>
+</tr>
+<tr>
+<td>不一定需要</td>
+<td>如果与聚集函数一起使用列（或表达式），则必须使用</td>
+</tr>
+</tbody></table>
+<p>第一项差别极为重要。我们经常发现，用 GROUP BY 分组的数据确实是以分组顺序输出的。但并不总是这样，这不是 SQL 规范所要求的。此外，即使特定的 DBMS 总是按给出的 GROUP BY 子句排序数据，用户也可能会要求以不同的顺序排序。就因为你以某种方式分组数据（获得特定的分组聚集值），并不表示你需要以相同的方式排序输出。 应该提供明确的 ORDER BY 子句，即使其效果等同于 GROUP BY 子句。</p>
+<p>::: tip 不要忘记 ORDER BY</p>
+<p>一般在使用 GROUP BY 子句时，应该也给出 ORDER BY 子句。这是保 证数据正确排序的唯一方法。千万不要仅依赖 GROUP BY 排序数据。</p>
+<p>:::</p>
+<p>为说明 GROUP BY 和 ORDER BY 的使用方法，来看一个例子。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 排序和分组</span></span><br><span class="line"><span class="keyword">SELECT</span> area_subway_name,<span class="built_in">COUNT</span>(area_subway_name) <span class="keyword">from</span> subways <span class="keyword">GROUP</span> <span class="keyword">BY</span> area_subway_name <span class="keyword">having</span> area_subway_name <span class="operator">!=</span> <span class="string">&#x27;郑州&#x27;</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> id <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211111180341765.png" alt="image-20211111180341765"></p>
+<h3 id="SELECT-子句顺序"><a href="#SELECT-子句顺序" class="headerlink" title="SELECT 子句顺序"></a>SELECT 子句顺序</h3><p>在 SELECT 语句中 使用时必须遵循的次序，以下列出迄今为止所学过的子句。</p>
+<table>
+<thead>
+<tr>
+<th>子句</th>
+<th>说明</th>
+<th>是否必须使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SELECT</td>
+<td>要返回的列或表达式</td>
+<td>是</td>
+</tr>
+<tr>
+<td>FROM</td>
+<td>从中检索数据的表</td>
+<td>仅在从表选择数据时使用</td>
+</tr>
+<tr>
+<td>WHERE</td>
+<td>行级过滤</td>
+<td>否</td>
+</tr>
+<tr>
+<td>GROUP BY</td>
+<td>分组说明</td>
+<td>仅在按组计算聚集时使用</td>
+</tr>
+<tr>
+<td>HAVING</td>
+<td>组级过滤</td>
+<td>否</td>
+</tr>
+<tr>
+<td>ORDER BY</td>
+<td>输出排序顺序</td>
+<td>否</td>
+</tr>
+</tbody></table>
+<h2 id="使用子查询"><a href="#使用子查询" class="headerlink" title="使用子查询"></a>使用子查询</h2><p>SELECT 语句是 SQL 的查询。我们迄今为止所看到的所有 SELECT 语句都 是简单查询，即从单个数据库表中检索数据的单条语句。</p>
+<p>::: tip 查询（query）</p>
+<p>任何 SQL 语句都是查询。但此术语一般指 SELECT 语句。</p>
+<p>:::</p>
+<p>SQL 还允许创建子查询（subquery），即嵌套在其他查询中的查询。为什 么要这样做呢？理解这个概念的最好方法是考察几个例子。</p>
+<h3 id="利用子查询进行过滤"><a href="#利用子查询进行过滤" class="headerlink" title="利用子查询进行过滤"></a>利用子查询进行过滤</h3><p>比如 student 表中有没有记录 学生的 degree,但是 score 表中记录了,同时 student 表中的 sno 和 score 表中的 sno 有所对应，我们可以使用子查询来找到学生的 degree</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 子查询</span></span><br><span class="line"><span class="keyword">select</span> sname <span class="keyword">from</span> students <span class="keyword">WHERE</span> sno <span class="keyword">IN</span> (<span class="keyword">SELECT</span> sno <span class="keyword">from</span> score) <span class="keyword">ORDER</span> <span class="keyword">BY</span> sno;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211112150009187.png" alt="image-20211112150009187"></p>
+<p>分析 : 这一条 SQL 语句可以看成 先执行 <code>SELECT sno from score</code> 返回了</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211112150707717.png" alt="image-20211112150707717"></p>
+<p>然后把值替换进了 <code>select sname from students WHERE sno IN ()</code> IN 的里面。</p>
+<h2 id="联结表"><a href="#联结表" class="headerlink" title="联结表"></a>联结表</h2><p>这一章会介绍什么是联结，为什么使用联结，如何编写使用联结的 SELECT 语句。</p>
+<h3 id="联结"><a href="#联结" class="headerlink" title="联结"></a>联结</h3><p>SQL 最强大的功能之一就是能在数据查询的执行中联结（join）表。联结 是利用 SQL 的 SELECT 能执行的最重要的操作，很好地理解联结及其语 法是学习 SQL 的极为重要的部分。</p>
+<p>在能够有效地使用联结前，必须了解关系表以及关系数据库设计的一些 基础知识。下面的介绍并不能涵盖这一主题的所有内容，但作为入门已经够了。</p>
+<h3 id="关系表"><a href="#关系表" class="headerlink" title="关系表"></a>关系表</h3><p>理解关系表，最好是来看个例子。</p>
+<p>有一个包含产品目录的数据库表，其中每类物品占一行。对于每一种物 品，要存储的信息包括产品描述、价格，以及生产该产品的供应商。</p>
+<p>现在有同一供应商生产的多种物品，那么在何处存储供应商名、地址、联系方法等供应商信息呢？将这些数据与产品信息分开存储的理由是：</p>
+<ul>
+<li>同一供应商生产的每个产品，其供应商信息都是相同的，对每个产品 重复此信息既浪费时间又浪费存储空间；</li>
+<li>如果供应商信息发生变化，例如供应商迁址或电话号码变动，只需修 改一次即可；</li>
+<li>如果有重复数据（即每种产品都存储供应商信息），则很难保证每次 输入该数据的方式都相同。不一致的数据在报表中就很难利用。</li>
+</ul>
+<p>关键是，相同的数据出现多次决不是一件好事，这是关系数据库设计的 基础。关系表的设计就是要把信息分解成多个表，一类数据一个表。各 表通过某些共同的值互相关联（所以才叫关系数据库）。</p>
+<p>在这个例子中可建立两个表：一个存储供应商信息，另一个存储产品信 息。Vendors 表包含所有供应商信息，每个供应商占一行，具有唯一的 标识。此标识称为主键（primary key），可以是供应商 ID 或任何其他唯 一值。<br>Products 表只存储产品信息，除了存储供应商 ID（Vendors 表的主键） 外，它不存储其他有关供应商的信息。Vendors 表的主键将 Vendors 表 与 Products 表关联，利用供应商 ID 能从 Vendors 表中找出相应供应 商的详细信息。</p>
+<p>这样做的好处是：</p>
+<ul>
+<li>供应商信息不重复，不会浪费时间和空间；</li>
+<li>如果供应商信息变动，可以只更新 Vendors 表中的单个记录，相关表 中的数据不用改动；</li>
+<li>由于数据不重复，数据显然是一致的，使得处理数据和生成报表更简单。</li>
+</ul>
+<p>总之，关系数据可以有效地存储，方便地处理。因此，关系数据库的可 伸缩性远比非关系数据库要好。</p>
+<p>::: tip 可伸缩（scale）</p>
+<p>能够适应不断增加的工作量而不失败。设计良好的数据库或应用程序 称为可伸缩性好（scale well）。</p>
+<p>:::</p>
+<h3 id="为什么使用联结"><a href="#为什么使用联结" class="headerlink" title="为什么使用联结"></a>为什么使用联结</h3><p>如前所述，将数据分解为多个表能更有效地存储，更方便地处理，并且 可伸缩性更好。但这些好处是有代价的。</p>
+<p>如果数据存储在多个表中，怎样用一条 SELECT 语句就检索出数据呢？</p>
+<p>答案是使用联结。简单说，联结是一种机制，用来在一条 SELECT 语句 中关联表，因此称为联结。使用特殊的语法，可以联结多个表返回一组 输出，联结在运行时关联表中正确的行。</p>
+<h3 id="创建联结"><a href="#创建联结" class="headerlink" title="创建联结"></a>创建联结</h3><p>创建联结非常简单，指定要联结的所有表以及关联它们的方式即可。请 看下面的例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建联结</span></span><br><span class="line"><span class="keyword">SELECT</span> students.sno,students.sname,score.degree <span class="keyword">FROM</span> students,score <span class="keyword">WHERE</span> students.sno <span class="operator">=</span> score.sno;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211112155443946.png" alt="image-20211112155443946"></p>
+<p>我们来看这段代码。SELECT 语句与前面所有语句一样指定要检索的列。</p>
+<p>这里最大的差别是所指定的两列（sno 和 sname）在一个 表中，而第三列（degree）在另一个表中。</p>
+<p>现在来看 FROM 子句。与以前的 SELECT 语句不一样，这条语句的 FROM 子句列出了两个表：students 和 score。它们就是这条 SELECT 语句 联结的两个表的名字。这两个表用 WHERE 子句正确地联结，WHERE 子句 指示 DBMS 将 students 表中的 sno 与 score 表中的 sno 匹配起来。</p>
+<p>我们注意到要匹配的两列指定为 students.sno 和 students.sno &#x3D; score.snoscore.sno 这里需要这种完全限定列名，如果只给出 sno，DBMS 就不知道指的是哪一个了。</p>
+<p>::: tip 警告：完全限定列名</p>
+<p>就像前一课提到的，在引用的列可能出现歧义时，必须使用完全限定 列名（用一个句点分隔表名和列名）。如果引用一个没有用表名限制的 具有歧义的列名，大多数 DBMS 会返回错误。</p>
+<p>:::</p>
+<h3 id="WHERE-子句的重要性"><a href="#WHERE-子句的重要性" class="headerlink" title="WHERE 子句的重要性"></a>WHERE 子句的重要性</h3><p>使用 WHERE 子句建立联结关系似乎有点奇怪，但实际上是有个很充分的 理由的。要记住，在一条 SELECT 语句中联结几个表时，相应的关系是 在运行中构造的。在数据库表的定义中没有指示 DBMS 如何对表进行联 结的内容。你必须自己做这件事情。在联结两个表时，实际要做的是将 第一个表中的每一行与第二个表中的每一行配对。WHERE 子句作为过滤 条件，只包含那些匹配给定条件（这里是联结条件）的行。没有 WHERE 子句，第一个表中的每一行将与第二个表中的每一行配对，而不管它们 逻辑上是否能配在一起。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- WHERE 子句的重要性</span></span><br><span class="line"><span class="keyword">SELECT</span> students.sno,students.sname,score.degree <span class="keyword">FROM</span> students,score;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/111.gif" alt="111"></p>
+<p>::: tip 注意：不要忘了 WHERE 子句</p>
+<p>要保证所有联结都有 WHERE 子句，否则 DBMS 将返回比想要的数据多 得多的数据。同理，要保证 WHERE 子句的正确性。不正确的过滤条件 会导致 DBMS 返回不正确的数据</p>
+<p>:::</p>
+<h3 id="内联结-INNER-JOIN"><a href="#内联结-INNER-JOIN" class="headerlink" title="内联结 INNER JOIN"></a>内联结 INNER JOIN</h3><p>目前为止使用的联结称为等值联结（equijoin），它基于两个表之间的相等测试。这种联结也称为内联结（inner join）。其实，可以对这种联结使用稍微不同的语法，明确指定联结的类型。下面的 SELECT 语句返回与前面例子完全相同的数据：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 内连接</span></span><br><span class="line"><span class="keyword">SELECT</span> students.sno,students.sname,score.degree <span class="keyword">FROM</span> students <span class="keyword">INNER</span> <span class="keyword">JOIN</span> score <span class="keyword">ON</span> students.sno <span class="operator">=</span> score.sno;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211112170705621.png" alt="image-20211112170705621"></p>
+<p>此语句中的 SELECT 与前面的 SELECT 语句相同，但 FROM 子句不同。这 里，两个表之间的关系是以 INNER JOIN 指定的部分 FROM 子句。在使用 这种语法时，联结条件用特定的 ON 子句而不是 WHERE 子句给出。传递 给 ON 的实际条件与传递给 WHERE 的相同。</p>
+<h3 id="联结多个表"><a href="#联结多个表" class="headerlink" title="联结多个表"></a>联结多个表</h3><p>SQL 不限制一条 SELECT 语句中可以联结的表的数目。创建联结的基本 规则也相同。首先列出所有表，然后定义表之间的关系。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> prod_name, vend_name, prod_price, quantity <span class="keyword">FROM</span> OrderItems, Products, Vendors <span class="keyword">WHERE</span> Products.vend_id <span class="operator">=</span> Vendors.vend_id  <span class="keyword">AND</span> OrderItems.prod_id <span class="operator">=</span> Products.prod_id  <span class="keyword">AND</span> order_num <span class="operator">=</span> <span class="number">20007</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> cust_name, cust_contact <span class="keyword">FROM</span> Customers <span class="keyword">WHERE</span> cust_id <span class="keyword">IN</span></span><br><span class="line">(<span class="keyword">SELECT</span> cust_id <span class="keyword">FROM</span> Orders <span class="keyword">WHERE</span> order_num <span class="keyword">IN</span></span><br><span class="line">(<span class="keyword">SELECT</span> order_num <span class="keyword">FROM</span> OrderItems <span class="keyword">WHERE</span> prod_id <span class="operator">=</span> <span class="string">&#x27;RGAN01&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> cust_name, cust_contact <span class="keyword">FROM</span> Customers, Orders, OrderItems <span class="keyword">WHERE</span> Customers.cust_id <span class="operator">=</span> Orders.cust_id  <span class="keyword">AND</span> OrderItems.order_num <span class="operator">=</span> Orders.order_num  <span class="keyword">AND</span> prod_id <span class="operator">=</span> <span class="string">&#x27;RGAN01&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建高级联结"><a href="#创建高级联结" class="headerlink" title="创建高级联结"></a>创建高级联结</h2><p>本章讲解另外一些联结（包括它们的含义和使用方法），介绍如何使用表 别名，如何对被联结的表使用聚集函数。</p>
+<h3 id="使用表别名"><a href="#使用表别名" class="headerlink" title="使用表别名"></a>使用表别名</h3><p><a href="#%E4%BD%BF%E7%94%A8%E5%88%AB%E5%90%8D">之前</a>介绍了如何使用别名引用被检索的表列。例如</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> CONCAT(sno,sname) <span class="keyword">as</span> noAndName <span class="keyword">from</span> students;</span><br></pre></td></tr></table></figure>
+
+<p>SQL 除了可以对列名和计算字段使用别名，还允许给表名起别名。这样 做有两个主要理由：</p>
+<ul>
+<li>缩短 SQL 语句；</li>
+<li>允许在一条 SELECT 语句中多次使用相同的表。</li>
+</ul>
+<p>请看下面的 SELECT 语句。它与前一课例子中所用的语句基本相同，但 改成了使用别名：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> cust_name, cust_contact <span class="keyword">FROM</span> Customers <span class="keyword">AS</span> C, Orders <span class="keyword">AS</span> O, OrderItems <span class="keyword">AS</span> OI <span class="keyword">WHERE</span> C.cust_id <span class="operator">=</span> O.cust_id  <span class="keyword">AND</span> OI.order_num <span class="operator">=</span> O.order_num  <span class="keyword">AND</span> prod_id <span class="operator">=</span> <span class="string">&#x27;RGAN01&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，FROM 子句中的三个表全都有别名。Customers AS C 使用 C 作为 Customers 的别名，如此等等。这样，就可以使用省略的 C 而不用 全名 Customers。在这个例子中，表别名只用于 WHERE 子句。其实它不 仅能用于 WHERE 子句，还可以用于 SELECT 的列表、ORDER BY 子句以及 其他语句部分。</p>
+<h3 id="使用不同类型的联结"><a href="#使用不同类型的联结" class="headerlink" title="使用不同类型的联结"></a>使用不同类型的联结</h3><p>迄今为止，我们使用的只是内联结或等值联结的简单联结。现在来看三种 其他联结：自联结（self-join）、自然联结（natural join）和外联结（outer join）</p>
+<h4 id="自联结"><a href="#自联结" class="headerlink" title="自联结"></a>自联结</h4><p>如前所述，使用表别名的一个主要原因是能在一条 SELECT 语句中不止一次引用相同的表。下面举两个例子。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 自联结</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> sname <span class="keyword">IN</span> (<span class="keyword">SELECT</span> sname <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> ssex <span class="operator">=</span> &quot;男&quot;);</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211112202305202.png" alt="image-20211112202305202"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> sname <span class="operator">=</span> (<span class="keyword">SELECT</span> sname <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> birthday <span class="operator">=</span> &quot;1998-09-01 00:00:00&quot;);</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211112202414314.png" alt="image-20211112202414314"></p>
+<p>::: tip 提示：用自联结而不用子查询</p>
+<p>自联结通常作为外部语句，用来替代从相同表中检索数据的使用子查 询语句。虽然终的结果是相同的，但许多 DBMS 处理联结远比处理 子查询快得多。应该试一下两种方法，以确定哪一种的性能更好。</p>
+<p>:::</p>
+<h4 id="自然联结"><a href="#自然联结" class="headerlink" title="自然联结"></a>自然联结</h4><p>无论何时对表进行联结，应该至少有一列不止出现在一个表中（被联结的列）。标准的联结（前一课中介绍的内联结）返回所有数据，相同的列甚至多次出现。自然联结排除多次出现，使每一列只返回一次。</p>
+<p>怎样完成这项工作呢？答案是，系统不完成这项工作，由你自己完成它。 自然联结要求你只能选择那些唯一的列，一般通过对一个表使用通配符 （SELECT *），而对其他表的列使用明确的子集来完成。</p>
+<p>事实上，我们迄今为止建立的每个内联结都是自然联结，很可能永远都 不会用到不是自然联结的内联结。</p>
+<h4 id="外联结-OUTER-JOIN"><a href="#外联结-OUTER-JOIN" class="headerlink" title="外联结 OUTER JOIN"></a>外联结 OUTER JOIN</h4><p>许多联结将一个表中的行与另一个表中的行相关联，但有时候需要包含没有关联行的那些行。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 内联结</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> sname <span class="keyword">FROM</span> students <span class="keyword">INNER</span> <span class="keyword">JOIN</span> score <span class="keyword">ON</span> students.sno <span class="operator">=</span> score.sno <span class="keyword">ORDER</span> <span class="keyword">BY</span> sname;</span><br><span class="line"><span class="comment">-- 外联结</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> sname <span class="keyword">FROM</span> students <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> score <span class="keyword">ON</span> students.sno <span class="operator">=</span> score.sno <span class="keyword">ORDER</span> <span class="keyword">BY</span> sname;</span><br></pre></td></tr></table></figure>
+
+<p>这条 SELECT 语句使用了关键字 OUTER JOIN 来指定联结类型。但是，与内联结关联两个表中的行不同的是，外联结还包括没有关联行的行。在使用 OUTER JOIN 语法时，必须使用 RIGHT 或 LEFT 关键字指定包括其所有行的表 （RIGHT 指出的是 OUTER JOIN 右边的表，而 LEFT 指出的是 OUTER JOIN 左边的表）。</p>
+<p>上面的例子使用 LEFT OUTER JOIN 从 FROM 子句左边的表 （students 表）中选择所有行。</p>
+<p>为了从右边的表中选择所有行，需要使 用 RIGHT OUTER JOIN</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 外联结 右</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> sname <span class="keyword">FROM</span> students <span class="keyword">RIGHT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> score <span class="keyword">ON</span> students.sno <span class="operator">=</span> score.sno <span class="keyword">ORDER</span> <span class="keyword">BY</span> sname;</span><br></pre></td></tr></table></figure>
+
+<h2 id="组合查询-UNION"><a href="#组合查询-UNION" class="headerlink" title="组合查询 UNION"></a>组合查询 UNION</h2><p>如何利用 UNION 操作符将多条 SELECT 语句组合成一个结 果集。</p>
+<h3 id="组合查询"><a href="#组合查询" class="headerlink" title="组合查询"></a>组合查询</h3><p>多数 SQL 查询只包含从一个或多个表中返回数据的单条 SELECT 语句。 但是，SQL 也允许执行多个查询（多条 SELECT 语句），并将结果作为一 个查询结果集返回。这些组合查询通常称为并（union）或复合查询 （compound query）</p>
+<p>主要有两种情况需要使用组合查询：</p>
+<ul>
+<li><p>在一个查询中从不同的表返回结构数据；</p>
+</li>
+<li><p>对一个表执行多个查询，按一个查询返回数据</p>
+</li>
+</ul>
+<h3 id="创建组合查询"><a href="#创建组合查询" class="headerlink" title="创建组合查询"></a>创建组合查询</h3><p>可用 UNION 操作符来组合数条 SQL 查询。利用 UNION，可给出多条 SELECT 语句，将它们的结果组合成一个结果集。</p>
+<p>比如输出 匡明 的总分</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建组合查询</span></span><br><span class="line"><span class="keyword">SELECT</span> sname,<span class="built_in">SUM</span>(score.degree) <span class="keyword">AS</span> 总分 <span class="keyword">FROM</span> students <span class="keyword">INNER</span> <span class="keyword">JOIN</span> score <span class="keyword">ON</span> students.sno <span class="operator">=</span> score.sno <span class="keyword">AND</span> students.sname <span class="operator">=</span> &quot;匡明&quot; <span class="keyword">ORDER</span> <span class="keyword">BY</span> sname;</span><br></pre></td></tr></table></figure>
+
+<p>输出 王芳的总分</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sname,<span class="built_in">SUM</span>(score.degree) <span class="keyword">AS</span> 总分 <span class="keyword">FROM</span> students <span class="keyword">INNER</span> <span class="keyword">JOIN</span> score <span class="keyword">ON</span> students.sno <span class="operator">=</span> score.sno <span class="keyword">AND</span> students.sname <span class="operator">=</span> &quot;王芳&quot; <span class="keyword">ORDER</span> <span class="keyword">BY</span> sname;</span><br></pre></td></tr></table></figure>
+
+<p>接下来组合这两条语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sname,<span class="built_in">SUM</span>(score.degree) <span class="keyword">AS</span> 总分 <span class="keyword">FROM</span> students <span class="keyword">INNER</span> <span class="keyword">JOIN</span> score <span class="keyword">ON</span> students.sno <span class="operator">=</span> score.sno <span class="keyword">AND</span> students.sname <span class="operator">=</span> &quot;匡明&quot;</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> sname,<span class="built_in">SUM</span>(score.degree) <span class="keyword">AS</span> 总分 <span class="keyword">FROM</span> students <span class="keyword">INNER</span> <span class="keyword">JOIN</span> score <span class="keyword">ON</span> students.sno <span class="operator">=</span> score.sno <span class="keyword">AND</span> students.sname <span class="operator">=</span> &quot;王芳&quot; <span class="keyword">ORDER</span> <span class="keyword">BY</span> sname</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/image-20211117205630468.png" alt="image-20211117205630468"></p>
+<p>注意 order by 子句需要在最后的位置，所以去掉了第一段代码的 order by 子句</p>
+<p>使用 UNION 可能比使用 WHERE 子句更为复杂。但对于较复杂的过滤条件，或者从多个表（而不是一个表）中检索数据的 情形，使用 UNION 可能会使处理更简单。</p>
+<h3 id="UNION-规则"><a href="#UNION-规则" class="headerlink" title="UNION 规则"></a>UNION 规则</h3><ul>
+<li>UNION 必须由两条或两条以上的 SELECT 语句组成，语句之间用关键 字 UNION 分隔（因此，如果组合四条 SELECT 语句，将要使用三个 UNION 关键字）。</li>
+<li>UNION 中的每个查询必须包含相同的列、表达式或聚集函数（不过， 各个列不需要以相同的次序列出）。</li>
+<li>列数据类型必须兼容：类型不必完全相同，但必须是 DBMS 可以隐含 转换的类型（例如，不同的数值类型或不同的日期类型）。</li>
+</ul>
+<h3 id="包含或取消重复的行"><a href="#包含或取消重复的行" class="headerlink" title="包含或取消重复的行"></a>包含或取消重复的行</h3><p>UNION 默认会去掉重复的行，如果想显示重复的行可以使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="插入数据-INSERT"><a href="#插入数据-INSERT" class="headerlink" title="插入数据 INSERT"></a>插入数据 INSERT</h2><p>介绍如何利用 SQL 的 INSERT 语句将数据插入表中。</p>
+<h3 id="数据插入"><a href="#数据插入" class="headerlink" title="数据插入"></a>数据插入</h3><p>INSERT 用来将行插入（或添加）到数据库表。插入有几种 方式：</p>
+<ul>
+<li>插入完整的行；</li>
+<li>插入行的一部分；</li>
+<li>插入某些查询的结果。</li>
+</ul>
+<h3 id="插入完整的行"><a href="#插入完整的行" class="headerlink" title="插入完整的行"></a>插入完整的行</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 插入完整行</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> students <span class="keyword">VALUES</span>(<span class="number">110</span>,&quot;张三&quot;,&quot;男&quot;,NOW(),<span class="number">95033</span>,<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这段代码将一个新学生插入到 students 表中。。存储到表中每一列的数 据在 VALUES 子句中给出，必须给每一列提供一个值。如果某列没有值则应该使用 NULL 。</p>
+<p>上面的 SQL 语 句高度依赖于表中列的定义次序，还依赖于其容易获得的次序信息。即 使可以得到这种次序信息，也不能保证各列在下一次表结构变动后保持完全相同的次序。因此，编写依赖于特定列次序的 SQL 语句是很不安全 的，这样做迟早会出问题。</p>
+<p>更安全清晰的方法如下</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> students(sno,sname,ssex,birthday,class,score) <span class="keyword">VALUES</span>(<span class="number">110</span>,&quot;张三&quot;,&quot;男&quot;,NOW(),<span class="number">95033</span>,<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这个例子与前一个 INSERT 语句的工作完全相同，但在表名后的括号里 明确给出了列名。在插入行时，DBMS 将用 VALUES 列表中的相应值填 入列表中的对应项。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://item.jd.com/11232698.html">SQL 必知必会第四版</a></p>
+<p><a target="_blank" rel="noopener" href="https://item.jd.com/13355022491.html">SQL 基础教程第二版</a></p>
+<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/">Mysql 官方文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1177760294764384">SQL 教程 - 廖雪峰的官方网站</a></p>
+<h2 id="练习数据"><a href="#练习数据" class="headerlink" title="练习数据"></a>练习数据</h2><p><a href="/SQL/subways.sql">练习数据 subways 下载</a></p>
+<p>148</p>
+<h2 id="单词"><a href="#单词" class="headerlink" title="单词"></a>单词</h2><table>
+<thead>
+<tr>
+<th>select</th>
+<th>选择,挑选</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单词</td>
+<td>意义</td>
+</tr>
+<tr>
+<td>from</td>
+<td>从…起,选择哪个表</td>
+</tr>
+<tr>
+<td>distinct</td>
+<td>不同的</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>限制</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>偏离</td>
+</tr>
+<tr>
+<td>order</td>
+<td>顺序</td>
+</tr>
+<tr>
+<td>between</td>
+<td>在…中间</td>
+</tr>
+<tr>
+<td>having</td>
+<td>有…拥有;和 group by 配合使用</td>
+</tr>
+<tr>
+<td>group</td>
+<td>组</td>
+</tr>
+<tr>
+<td>subquery</td>
+<td>子查询</td>
+</tr>
+<tr>
+<td>INNER</td>
+<td>内部的</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/42824008?v=4" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/42824008?v=4" title="头像" alt="头像"></a><div class="post-copyright__author_name">渡心</div><div class="post-copyright__author_desc">正因你我生于繁华，弥足之花方显珍贵</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://silence-dream.github.io/2021/05/01/%E5%90%8E%E7%AB%AF/01-Sql%E5%9F%BA%E7%A1%80/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://silence-dream.github.io/2021/05/01/%E5%90%8E%E7%AB%AF/01-Sql%E5%9F%BA%E7%A1%80/')">SQL 基础</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://silence-dream.github.io/2021/05/01/%E5%90%8E%E7%AB%AF/01-Sql%E5%9F%BA%E7%A1%80/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=SQL 基础&amp;url=https://silence-dream.github.io/2021/05/01/%E5%90%8E%E7%AB%AF/01-Sql%E5%9F%BA%E7%A1%80/&amp;pic=https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/ganyuxiaozhongli.jpg?_r_=91fb2cf7-8731-5aa7-a679-66d43b6b11a2" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://silence-dream.github.io" target="_blank">渡心的博客</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/sql/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>sql<span class="tagsPageCount">2</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/2e14526398b61894d3c1b91167c3b5461672071558236.jpeg?_r_=30d9c795-a215-2cf3-895c-08d530702c5e" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/05/01/%E5%90%8E%E7%AB%AF/03-MySQL%E8%B8%A9%E5%9D%91/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/f17310415885e63a13694c1c031a58261672071545196.jpeg?_r_=1d111387-e3ab-3a0d-d3c1-f405f0fb2d83" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MySQL踩坑记录</div></div></a></div><div class="next-post pull-right"><a href="/2021/05/02/%E5%89%8D%E7%AB%AF/JavaScript/03-%E5%AE%9E%E7%8E%B0%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/f17310415885e63a13694c1c031a58261672071545196.jpeg?_r_=13c0752d-a861-7e7c-c5d6-80265f0f3dd6" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">实现防抖和节流</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2021/05/01/%E5%90%8E%E7%AB%AF/03-MySQL%E8%B8%A9%E5%9D%91/" title="MySQL踩坑记录"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/f17310415885e63a13694c1c031a58261672071545196.jpeg?_r_=1d111387-e3ab-3a0d-d3c1-f405f0fb2d83" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2021-05-01</div><div class="title">MySQL踩坑记录</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://avatars.githubusercontent.com/u/42824008?v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description">正因你我生于繁华，弥足之花方显珍贵</div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">渡心</h1><div class="author-info__desc">正因你我生于繁华，弥足之花方显珍贵</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/Silence-dream" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="tencent://Message/?Uin=1971743001&amp;amp;websiteName=local.edu.com:8888=&amp;amp;Menu=yes" target="_blank" title="QQ"><i class="anzhiyufont anzhiyu-icon-qq"></i></a></div></div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3-Sql"><span class="toc-number">1.</span> <span class="toc-text">了解 Sql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">1.1.</span> <span class="toc-text">使用的工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.2.</span> <span class="toc-text">数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8"><span class="toc-number">1.3.</span> <span class="toc-text">表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text">列和数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C"><span class="toc-number">1.5.</span> <span class="toc-text">行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E9%94%AE-primary-key"><span class="toc-number">1.6.</span> <span class="toc-text">主键(primary key)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-SQL"><span class="toc-number">1.7.</span> <span class="toc-text">什么是 SQL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E6%95%B0%E6%8D%AE-SELECT"><span class="toc-number">2.</span> <span class="toc-text">检索数据(SELECT)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SELECT-%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.1.</span> <span class="toc-text">SELECT 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E5%8D%95%E5%88%97"><span class="toc-number">2.2.</span> <span class="toc-text">检索单列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E5%A4%9A%E5%88%97"><span class="toc-number">2.3.</span> <span class="toc-text">检索多列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E6%89%80%E6%9C%89%E5%88%97"><span class="toc-number">2.4.</span> <span class="toc-text">检索所有列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E7%B4%A2%E4%B8%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E5%80%BC"><span class="toc-number">2.5.</span> <span class="toc-text">检索不重复的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E5%88%B6%E7%BB%93%E6%9E%9C"><span class="toc-number">2.6.</span> <span class="toc-text">限制结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">2.7.</span> <span class="toc-text">注释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E6%A3%80%E7%B4%A2%E6%95%B0%E6%8D%AE-ORDER-BY"><span class="toc-number">3.</span> <span class="toc-text">排序检索数据(ORDER BY )</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E6%8E%92%E5%BA%8F"><span class="toc-number">3.1.</span> <span class="toc-text">按多个列排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%88%97%E4%BD%8D%E7%BD%AE%E6%8E%92%E5%BA%8F"><span class="toc-number">3.2.</span> <span class="toc-text">按列位置排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E6%8E%92%E5%BA%8F%E6%96%B9%E5%90%91-%EF%BC%88%E5%8D%87%E5%BA%8F%E3%80%81%E9%99%8D%E5%BA%8F%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">指定排序方向 （升序、降序）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E6%95%B0%E6%8D%AE-WHERE"><span class="toc-number">4.</span> <span class="toc-text">过滤数据(WHERE)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-WHERE-%E5%AD%90%E5%8F%A5"><span class="toc-number">4.1.</span> <span class="toc-text">使用 WHERE 子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WHERE-%E5%AD%90%E5%8F%A5%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">4.2.</span> <span class="toc-text">WHERE 子句操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.2.1.</span> <span class="toc-text">算术运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.2.2.</span> <span class="toc-text">比较运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">4.2.3.</span> <span class="toc-text">逻辑运算符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E5%80%BC%E6%A3%80%E6%9F%A5"><span class="toc-number">4.3.</span> <span class="toc-text">范围值检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E5%80%BC%E6%A3%80%E6%9F%A5"><span class="toc-number">4.4.</span> <span class="toc-text">空值检查</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E8%BF%87%E6%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">高级数据过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88-WHERE-%E5%AD%90%E5%8F%A5"><span class="toc-number">5.1.</span> <span class="toc-text">组合 WHERE 子句</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AND-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">5.1.1.</span> <span class="toc-text">AND 操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OR-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">5.1.2.</span> <span class="toc-text">OR 操作符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IN-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">5.2.</span> <span class="toc-text">IN 操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NOT-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">5.3.</span> <span class="toc-text">NOT 操作符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E9%80%9A%E9%85%8D%E7%AC%A6%E8%BF%9B%E8%A1%8C%E8%BF%87%E6%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">用通配符进行过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LIKE-%E6%93%8D%E4%BD%9C%E7%AC%A6%E8%BF%9B%E8%A1%8C%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-number">6.1.</span> <span class="toc-text">LIKE 操作符进行模糊查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BE%E5%88%86%E5%8F%B7%EF%BC%88-%EF%BC%89%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="toc-number">6.2.</span> <span class="toc-text">百分号（%）通配符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E5%88%92%E7%BA%BF%EF%BC%88-%EF%BC%89%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="toc-number">6.3.</span> <span class="toc-text">下划线（_）通配符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%80%9A%E9%85%8D%E7%AC%A6%E7%9A%84%E6%8A%80%E5%B7%A7"><span class="toc-number">6.4.</span> <span class="toc-text">使用通配符的技巧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%AD%97%E6%AE%B5"><span class="toc-number">7.</span> <span class="toc-text">计算字段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%BC%E6%8E%A5%E5%AD%97%E6%AE%B5"><span class="toc-number">7.1.</span> <span class="toc-text">拼接字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%88%AB%E5%90%8D"><span class="toc-number">7.2.</span> <span class="toc-text">使用别名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E7%AE%97%E6%9C%AF%E8%AE%A1%E7%AE%97"><span class="toc-number">7.3.</span> <span class="toc-text">执行算术计算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE"><span class="toc-number">8.</span> <span class="toc-text">使用函数处理数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">8.1.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">8.2.</span> <span class="toc-text">使用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">8.3.</span> <span class="toc-text">MySQL 常用函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E6%80%BB%E6%95%B0%E6%8D%AE"><span class="toc-number">9.</span> <span class="toc-text">汇总数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E9%9B%86%E5%87%BD%E6%95%B0"><span class="toc-number">9.1.</span> <span class="toc-text">聚集函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E6%95%B0%E6%8D%AE-GROUP"><span class="toc-number">10.</span> <span class="toc-text">分组数据 GROUP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E7%BB%84"><span class="toc-number">10.1.</span> <span class="toc-text">数据分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%88%86%E7%BB%84"><span class="toc-number">10.2.</span> <span class="toc-text">创建分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%88%86%E7%BB%84"><span class="toc-number">10.3.</span> <span class="toc-text">过滤分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%92%8C%E6%8E%92%E5%BA%8F"><span class="toc-number">10.4.</span> <span class="toc-text">分组和排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SELECT-%E5%AD%90%E5%8F%A5%E9%A1%BA%E5%BA%8F"><span class="toc-number">10.5.</span> <span class="toc-text">SELECT 子句顺序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">11.</span> <span class="toc-text">使用子查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%AD%90%E6%9F%A5%E8%AF%A2%E8%BF%9B%E8%A1%8C%E8%BF%87%E6%BB%A4"><span class="toc-number">11.1.</span> <span class="toc-text">利用子查询进行过滤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%94%E7%BB%93%E8%A1%A8"><span class="toc-number">12.</span> <span class="toc-text">联结表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E7%BB%93"><span class="toc-number">12.1.</span> <span class="toc-text">联结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E8%A1%A8"><span class="toc-number">12.2.</span> <span class="toc-text">关系表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E8%81%94%E7%BB%93"><span class="toc-number">12.3.</span> <span class="toc-text">为什么使用联结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%81%94%E7%BB%93"><span class="toc-number">12.4.</span> <span class="toc-text">创建联结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WHERE-%E5%AD%90%E5%8F%A5%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-number">12.5.</span> <span class="toc-text">WHERE 子句的重要性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E8%81%94%E7%BB%93-INNER-JOIN"><span class="toc-number">12.6.</span> <span class="toc-text">内联结 INNER JOIN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E7%BB%93%E5%A4%9A%E4%B8%AA%E8%A1%A8"><span class="toc-number">12.7.</span> <span class="toc-text">联结多个表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%AB%98%E7%BA%A7%E8%81%94%E7%BB%93"><span class="toc-number">13.</span> <span class="toc-text">创建高级联结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%A1%A8%E5%88%AB%E5%90%8D"><span class="toc-number">13.1.</span> <span class="toc-text">使用表别名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%81%94%E7%BB%93"><span class="toc-number">13.2.</span> <span class="toc-text">使用不同类型的联结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E8%81%94%E7%BB%93"><span class="toc-number">13.2.1.</span> <span class="toc-text">自联结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E7%84%B6%E8%81%94%E7%BB%93"><span class="toc-number">13.2.2.</span> <span class="toc-text">自然联结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%96%E8%81%94%E7%BB%93-OUTER-JOIN"><span class="toc-number">13.2.3.</span> <span class="toc-text">外联结 OUTER JOIN</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2-UNION"><span class="toc-number">14.</span> <span class="toc-text">组合查询 UNION</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2"><span class="toc-number">14.1.</span> <span class="toc-text">组合查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2"><span class="toc-number">14.2.</span> <span class="toc-text">创建组合查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UNION-%E8%A7%84%E5%88%99"><span class="toc-number">14.3.</span> <span class="toc-text">UNION 规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E5%90%AB%E6%88%96%E5%8F%96%E6%B6%88%E9%87%8D%E5%A4%8D%E7%9A%84%E8%A1%8C"><span class="toc-number">14.4.</span> <span class="toc-text">包含或取消重复的行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE-INSERT"><span class="toc-number">15.</span> <span class="toc-text">插入数据 INSERT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%8F%92%E5%85%A5"><span class="toc-number">15.1.</span> <span class="toc-text">数据插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E5%AE%8C%E6%95%B4%E7%9A%84%E8%A1%8C"><span class="toc-number">15.2.</span> <span class="toc-text">插入完整的行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">16.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E6%95%B0%E6%8D%AE"><span class="toc-number">17.</span> <span class="toc-text">练习数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E8%AF%8D"><span class="toc-number">18.</span> <span class="toc-text">单词</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/07/17/%E5%89%8D%E7%AB%AF/Cypress/01-Cypress%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="Cypress 使用指南"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/2e14526398b61894d3c1b91167c3b5461672071558236.jpeg?_r_=30d9c795-a215-2cf3-895c-08d530702c5e" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Cypress 使用指南"/></a><div class="content"><a class="title" href="/2023/07/17/%E5%89%8D%E7%AB%AF/Cypress/01-Cypress%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" title="Cypress 使用指南">Cypress 使用指南</a><time datetime="2023-07-17T00:00:00.000Z" title="发表于 2023-07-17 00:00:00">2023-07-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/20/%E5%89%8D%E7%AB%AF/01-npm%E5%88%AB%E5%90%8D/" title="npm 别名---让小明变成小红"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/0fae1a35217854d8d7686bb6f6e1a42c1667192828148.jpeg?_r_=8feb11e6-1132-9a96-f59f-de9efb0e8098" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="npm 别名---让小明变成小红"/></a><div class="content"><a class="title" href="/2022/05/20/%E5%89%8D%E7%AB%AF/01-npm%E5%88%AB%E5%90%8D/" title="npm 别名---让小明变成小红">npm 别名---让小明变成小红</a><time datetime="2022-05-20T00:00:00.000Z" title="发表于 2022-05-20 00:00:00">2022-05-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/10/%E5%89%8D%E7%AB%AF/JavaScript/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/08-%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/" title="发布-订阅模式"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/ganyuxiaozhongli.jpg?_r_=31a963a3-3e0c-2d43-8aca-683e0be5a3dd" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="发布-订阅模式"/></a><div class="content"><a class="title" href="/2022/05/10/%E5%89%8D%E7%AB%AF/JavaScript/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/08-%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/" title="发布-订阅模式">发布-订阅模式</a><time datetime="2022-05-10T00:00:00.000Z" title="发表于 2022-05-10 00:00:00">2022-05-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/08/%E5%89%8D%E7%AB%AF/Vue/04-VueCli/" title="Vue Cli 配置"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/aced09b7b3413ac843e3cd4bb9e8b1361672071528562.jpeg?_r_=45493532-e5a3-2b17-f375-e363120675d2" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue Cli 配置"/></a><div class="content"><a class="title" href="/2022/02/08/%E5%89%8D%E7%AB%AF/Vue/04-VueCli/" title="Vue Cli 配置">Vue Cli 配置</a><time datetime="2022-02-08T00:00:00.000Z" title="发表于 2022-02-08 00:00:00">2022-02-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/08/%E5%89%8D%E7%AB%AF/Vue/05-Vu3-Setup%E8%AF%AD%E6%B3%95%E7%B3%96/" title="Vue3-Setup语法糖"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/1c95585cf59b5774cbbdd637827736bf1667192584163.jpeg?_r_=ded91e9b-3fbe-e3b4-e0a0-df1a0589825a" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue3-Setup语法糖"/></a><div class="content"><a class="title" href="/2022/02/08/%E5%89%8D%E7%AB%AF/Vue/05-Vu3-Setup%E8%AF%AD%E6%B3%95%E7%B3%96/" title="Vue3-Setup语法糖">Vue3-Setup语法糖</a><time datetime="2022-02-08T00:00:00.000Z" title="发表于 2022-02-08 00:00:00">2022-02-08</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:silenceqsl@gmail.com" title="email"><i class="anzhiyufont anzhiyufont anzhiyu-icon-envelope"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/Silence-dream/bed@master/img/202303061352769.png" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/Silence-dream" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2019 - 2024 By <a class="footer-bar-link" href="/" title="渡心" target="_blank">渡心</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">6</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.yichengloong.cn/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.yichengloong.cn/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Cypress/" style="font-size: 0.88rem;">Cypress<sup>1</sup></a><a href="/tags/JavaScript/" style="font-size: 0.88rem;">JavaScript<sup>6</sup></a><a href="/tags/Nuxt/" style="font-size: 0.88rem;">Nuxt<sup>1</sup></a><a href="/tags/React/" style="font-size: 0.88rem;">React<sup>5</sup></a><a href="/tags/TypeScript/" style="font-size: 0.88rem;">TypeScript<sup>1</sup></a><a href="/tags/Vue/" style="font-size: 0.88rem;">Vue<sup>6</sup></a><a href="/tags/npm/" style="font-size: 0.88rem;">npm<sup>1</sup></a><a href="/tags/shell/" style="font-size: 0.88rem;">shell<sup>1</sup></a><a href="/tags/sql/" style="font-size: 0.88rem;">sql<sup>2</sup></a><a href="/tags/%E5%8E%9F%E7%A5%9E/" style="font-size: 0.88rem;">原神<sup>1</sup></a><a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" style="font-size: 0.88rem;">开发工具<sup>2</sup></a><a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 0.88rem;">测试<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2019 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2019 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 渡心 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
